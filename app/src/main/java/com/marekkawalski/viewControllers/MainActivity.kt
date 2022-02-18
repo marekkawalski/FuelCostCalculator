@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
-import android.widget.CheckedTextView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.marekkawalski.fuelcostcalculator.R
@@ -27,16 +27,29 @@ class MainActivity : AppCompatActivity() {
                 .toDoubleOrNull()
             totalCost = findViewById<TextInputEditText>(R.id.totalCostInput).text.toString()
                 .toDoubleOrNull()
+            if (carMake.isNullOrBlank()) {
+                Toast.makeText(applicationContext, "Provide car name!", Toast.LENGTH_SHORT).show()
+                return@OnClickListener
+            }
+            if (totalDistance == null) {
+                Toast.makeText(applicationContext, "Provide total distance", Toast.LENGTH_SHORT)
+                    .show()
+                return@OnClickListener
+            }
             val car = Car(carMake ?: "no data", totalDistance ?: 0.0)
             if (dontKnowCheckBox.isChecked) {
                 ///@toDo handle not known cost of fuel
             } else {
+                if (totalCost == null) {
+                    Toast.makeText(applicationContext, "Provide total cost!", Toast.LENGTH_SHORT)
+                        .show()
+                    return@OnClickListener
+                }
                 car.totalFuelCost = totalCost ?: 0.00
             }
             val test = findViewById<TextView>(R.id.textView3)
             test.text = "" + car.avarageFuelConsumptions + "\t" + car.totalDistance + "\t"+ car.totalFuelCost
         })
     }
-
 
 }
