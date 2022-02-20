@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_add_distances.xml" value="0.33" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_add_passangers.xml" value="0.2877297990594271" />
-        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_main.xml" value="0.17" />
       </map>
     </option>
   </component>
