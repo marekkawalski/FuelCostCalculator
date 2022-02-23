@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private var carMake: String? = null
     private var totalCost: Double? = null
     private var totalCostWithoutDistance: Double? = null
-    private var car: Car? = null
+    var car: Car? = null
     private var dontKnowCheckBox: CheckBox? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             }
             car?.totalFuelCost = totalCost ?: 0.00
 
-            //move to activity where calculations are made
+            //move data to next activity
             val intent = Intent(this, AddDistances::class.java)
             intent.putExtra("car", car)
             startActivity(intent)

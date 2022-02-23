@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.marekkawalski.fuelcostcalculator.R
+import model.Car
 import model.Distance
 
 class AddDistances : AppCompatActivity() {
@@ -22,11 +23,11 @@ class AddDistances : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_distances)
         title = "Fuel cost calculator"
-        val addDistancesButton = findViewById<Button>(R.id.addDistancesButton)
+        val addDistancesButton = findViewById<Button>(R.id.addPassengerButton)
         val deleteLastDistanceButton = findViewById<Button>(R.id.deleteLastButton)
-        val nextScreenButton = findViewById<ImageButton>(R.id.buttonNextDistanceScreen)
+        val nextScreenButton = findViewById<ImageButton>(R.id.buttonNextResults)
         val tableOfDistances = findViewById<TableLayout>(R.id.tableLayout)
-        val distanceNameInput = findViewById<TextInputEditText>(R.id.distanceNameInput)
+        val distanceNameInput = findViewById<TextInputEditText>(R.id.passengerNameInput)
         val distanceInput = findViewById<TextInputEditText>(R.id.distanceInput)
         var addingDistancesComplete = false
 
@@ -85,9 +86,11 @@ class AddDistances : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
+                val car = intent.getParcelableExtra<Car>("car")
                 //move to activity where calculations are made
-                val intent = Intent(this, AddPassangers::class.java)
+                val intent = Intent(this, AddPassengers::class.java)
                 intent.putExtra("listOfDistances", listOfDistances)
+                intent.putExtra("car", car)
                 startActivity(intent)
             }
         }

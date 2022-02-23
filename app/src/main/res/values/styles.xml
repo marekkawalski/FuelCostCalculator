@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MultipleChoice">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:background">@android:drawable/editbox_background</item>
+        <item name="android:drawableRight">@android:drawable/arrow_down_float</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:hint">Select Language</item>
+        <item name="android:padding">12dp</item>
+        />
+    </style>
+
+</resources>

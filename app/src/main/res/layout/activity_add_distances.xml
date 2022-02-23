@@ -8,7 +8,7 @@
     tools:context="com.marekkawalski.viewControllers.AddDistances">
 
     <Button
-        android:id="@+id/addDistancesButton"
+        android:id="@+id/addPassengerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -29,7 +29,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/addDistancesButton"
+        app:layout_constraintStart_toEndOf="@+id/addPassengerButton"
         app:layout_constraintTop_toBottomOf="@+id/distanceInputLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/distanceNameInput"
+            android:id="@+id/passengerNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="distance name" />
@@ -90,7 +90,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addDistancesButton">
+        app:layout_constraintTop_toBottomOf="@+id/addPassengerButton">
 
         <TableLayout
             android:id="@+id/tableLayout"
@@ -133,7 +133,7 @@
     </ScrollView>
 
     <ImageButton
-        android:id="@+id/buttonNextDistanceScreen"
+        android:id="@+id/buttonNextResults"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/distanceNameInputLayout"
