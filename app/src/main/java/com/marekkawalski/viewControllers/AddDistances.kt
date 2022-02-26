@@ -3,6 +3,7 @@ package com.marekkawalski.viewControllers
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
+import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
@@ -46,10 +47,15 @@ class AddDistances : AppCompatActivity() {
             }
             val distanceNameView = TextView(this)
             val distanceView = TextView(this)
+
             distanceNameView.text = distanceName
-            distanceView.text = distance.toString()
             distanceNameView.gravity = Gravity.CENTER
+            distanceNameView.width = ViewGroup.LayoutParams.WRAP_CONTENT
+
+            distanceView.text = distance.toString()
             distanceView.gravity = Gravity.CENTER
+            distanceView.width = ViewGroup.LayoutParams.WRAP_CONTENT
+
             tableRow = TableRow(this)
             tableRow?.addView(distanceNameView)
             tableRow?.addView(distanceView)
