@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private var carMake: String? = null
     private var totalCost: Double? = null
     private var totalCostWithoutDistance: Double? = null
-    var car: Car? = null
+    private var car: Car? = null
     private var dontKnowCheckBox: CheckBox? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,10 +94,8 @@ class MainActivity : AppCompatActivity() {
             findViewById<TextInputLayout>(R.id.avarageConsumptionInputLayout)
         val pricePerLiterLayout = findViewById<TextInputLayout>(R.id.pricePerLiterInputLayout)
         if (dontKnowCheckBox?.isChecked == true) {
-
             averageConsumptionLayout.visibility = View.VISIBLE
             pricePerLiterLayout.visibility = View.VISIBLE
-
         } else {
             averageConsumptionLayout.visibility = View.GONE
             pricePerLiterLayout.visibility = View.GONE

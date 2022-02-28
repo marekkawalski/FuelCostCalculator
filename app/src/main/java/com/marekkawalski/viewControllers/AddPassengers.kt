@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.marekkawalski.fuelcostcalculator.R
 import model.Car
 import model.Distance
+import model.FuelCostCalculator
 import model.Person
 
 
@@ -48,7 +49,6 @@ class AddPassengers : AppCompatActivity() {
             }
         }
         val choiceArray = choiceList.toTypedArray()
-
 
         addPassengerButton.setOnClickListener {
             passengerName = passengerNameInput.text.toString()
@@ -87,12 +87,14 @@ class AddPassengers : AppCompatActivity() {
                             position
                         ) ?: return@setMultiChoiceItems
                     )
+                    distancesList[position].passengersCount++
                 } else {
                     listOfPassengers.last().listOfPassengersSelectedDistances.remove(
                         distancesList?.get(
                             position
                         ) ?: return@setMultiChoiceItems
                     )
+                    distancesList[position].passengersCount--
                 }
             }
             alertDialog.setCancelable(false)
@@ -124,14 +126,15 @@ class AddPassengers : AppCompatActivity() {
                                 position
                             ) ?: return@setMultiChoiceItems
                         )
+                        distancesList[position].passengersCount++
                     } else {
                         listOfPassengers[person.id].listOfPassengersSelectedDistances.remove(
                             distancesList?.get(
                                 position
                             ) ?: return@setMultiChoiceItems
                         )
+                        distancesList[position].passengersCount--
                     }
-
                 }
                 alertDialog.setCancelable(false)
                 alertDialog.setPositiveButton("Ok") { _, _ ->
@@ -143,8 +146,13 @@ class AddPassengers : AppCompatActivity() {
         }
         deleteLastPassengerButton.setOnClickListener {
 
-            if (listOfPassengers.isNotEmpty()) listOfPassengers.removeLast()
-            else Toast.makeText(applicationContext, "Nothing to delete!", Toast.LENGTH_SHORT).show()
+            if (listOfPassengers.isNotEmpty()) {
+                listOfPassengers.removeLast()
+                for (i in listOfPassengers.last().listOfPassengersSelectedDistances) {
+                    i.passengersCount--
+                }
+            } else Toast.makeText(applicationContext, "Nothing to delete!", Toast.LENGTH_SHORT)
+                .show()
 
             if (listOfPassengersSelectedChoice.isNotEmpty()) listOfPassengersSelectedChoice.removeLast()
 
@@ -164,6 +172,22 @@ class AddPassengers : AppCompatActivity() {
                 ).show()
             } else {
 
+                var fuelCostCalculator =
+                    distancesList?.let { it1 -> FuelCostCalculator(it1, car) }
+
+
+
+                for (i in listOfPassengers) {
+                    if (fuelCostCalculator != null) {
+                        i.costOfFuel = fuelCostCalculator.calculatePassengerTotalCost(i)
+                        i.coveredDistance = fuelCostCalculator.calculatePassengerTotalDistance(i)
+                    }
+                }
+                Toast.makeText(
+                    applicationContext,
+                    listOfPassengers[0].costOfFuel.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
                 //move to activity where calculations are made
                 val intent = Intent(this, Results::class.java)
                 intent.putExtra("listOfPassengers", listOfPassengers)

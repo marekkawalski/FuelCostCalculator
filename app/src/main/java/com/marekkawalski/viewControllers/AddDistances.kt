@@ -18,7 +18,7 @@ class AddDistances : AppCompatActivity() {
     private var listOfDistances = ArrayList<Distance>()
     private var listOfDistancesViews = ArrayList<TableRow>()
     private var distanceInstance: Distance? = null
-    private var counter: Long = 0
+   // private var counter: Long = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +62,7 @@ class AddDistances : AppCompatActivity() {
             tableRow?.addView(distanceView)
             tableOfDistances.addView(tableRow)
             listOfDistancesViews.add(tableRow ?: return@setOnClickListener)
-            distanceInstance = Distance(counter, distanceName as String, distance ?: 0.0)
+            distanceInstance = Distance(distanceName as String, distance ?: 0.0)
             listOfDistances.add(distanceInstance ?: return@setOnClickListener)
 
             //if everything goes smoothly
@@ -71,7 +71,7 @@ class AddDistances : AppCompatActivity() {
                 "Distance \"${distanceNameView.text}\" added!",
                 Toast.LENGTH_SHORT
             ).show()
-            counter++
+            //counter++
             distanceInput.text?.clear() //clear input field
             distanceNameInput.text?.clear() //clear input field
             addingDistancesComplete = true
@@ -79,7 +79,7 @@ class AddDistances : AppCompatActivity() {
         deleteLastDistanceButton.setOnClickListener {
             if (listOfDistances.isNotEmpty()) {
                 listOfDistances.removeLast()
-                counter--
+                //counter--
             } else Toast.makeText(applicationContext, "Nothing to delete!", Toast.LENGTH_SHORT)
                 .show()
 

@@ -19,8 +19,13 @@ class Results : AppCompatActivity() {
             if (listOfPassengers.isEmpty()) {
                 resulsTextView.text = "list is empty"
             } else {
-                resulsTextView.text = listOfPassengers[0]?.name ?: "null niestety"
+                var textOfResults = ""
+
+                textOfResults += listOfPassengers[0].coveredDistance
+
+                resulsTextView.text = textOfResults
             }
+
         } else {
             resulsTextView.text = "list is null"
         }

@@ -2,7 +2,6 @@ package model
 
 class FuelCostCalculator constructor(
     private var listOfDistances: ArrayList<Distance>,
-    private var listOfPassengers: ArrayList<Person>,
     private var car: Car?
 ) {
     private var totalDistance: Double = 0.0
@@ -21,12 +20,20 @@ class FuelCostCalculator constructor(
             coveredDistance += i.distance
         }
         return coveredDistance
-
     }
 
     fun calculatePassengerTotalCost(person: Person): Double {
+        var totalPersonCost = 0.0
+        var totalDistance = 0.0
+        val totalFuelCost = car?.totalFuelCost ?: 0 as Double
+        for (i in listOfDistances) {
+            totalDistance = i.distance
+        }
+        for (i in person.listOfPassengersSelectedDistances) {
+            totalPersonCost += (totalFuelCost * i.distance) / (totalDistance * i.passengersCount)
 
-        return 0.0
+        }
+        return totalPersonCost
     }
 
 }
