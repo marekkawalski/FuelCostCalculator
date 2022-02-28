@@ -4,10 +4,12 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class Distance : Parcelable {
+    var id: Long? = null
     var distanceName: String = ""
     var distance: Double = 0.0
 
-    constructor(distanceName: String, distance: Double) {
+    constructor(id: Long, distanceName: String, distance: Double) {
+        this.id = id
         this.distanceName = distanceName
         this.distance = distance
     }
@@ -17,11 +19,13 @@ class Distance : Parcelable {
     }
 
     private constructor(parcelIn: Parcel) {
+        id = parcelIn.readLong()
         distanceName = parcelIn.readString() as String
         distance = parcelIn.readDouble()
     }
 
     override fun writeToParcel(out: Parcel, flags: Int) {
+        id?.let { out.writeLong(it) }
         out.writeString(distanceName)
         out.writeDouble(distance)
     }

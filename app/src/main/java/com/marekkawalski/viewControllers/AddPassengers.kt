@@ -2,6 +2,7 @@ package com.marekkawalski.viewControllers
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -17,7 +18,7 @@ import model.Person
 class AddPassengers : AppCompatActivity() {
 
     private var passengerName: String? = null
-    private var listOfPassengers = ArrayList<Person?>()
+    private var listOfPassengers = ArrayList<Person>()
     private var choiceList = ArrayList<String>()
     private var selectedChoiceList = ArrayList<Boolean>()
     private var listOfPassengersSelectedChoice = ArrayList<BooleanArray>()
@@ -79,6 +80,20 @@ class AddPassengers : AppCompatActivity() {
                 selectedChoiceArray
             ) { _: DialogInterface, position: Int, check: Boolean ->
                 listOfPassengersSelectedChoice.last()[position] = check
+
+                if (check) {
+                    listOfPassengers.last().listOfPassengersSelectedDistances.add(
+                        distancesList?.get(
+                            position
+                        ) ?: return@setMultiChoiceItems
+                    )
+                } else {
+                    listOfPassengers.last().listOfPassengersSelectedDistances.remove(
+                        distancesList?.get(
+                            position
+                        ) ?: return@setMultiChoiceItems
+                    )
+                }
             }
             alertDialog.setCancelable(false)
             alertDialog.setPositiveButton("Ok") { _, _ ->
@@ -95,14 +110,28 @@ class AddPassengers : AppCompatActivity() {
             distancesTextView.setOnClickListener {
                 alertDialog = AlertDialog.Builder(this)
                 alertDialog.setTitle(
-                    "Choose distances for " + (listOfPassengers[person.id]?.name
-                        ?: "")
+                    "Choose distances for " + listOfPassengers[person.id].name
                 )
                 alertDialog.setMultiChoiceItems(
                     choiceArray,
                     listOfPassengersSelectedChoice[person.id]
                 ) { _: DialogInterface, position: Int, check: Boolean ->
                     listOfPassengersSelectedChoice[person.id][position] = check
+
+                    if (check) {
+                        listOfPassengers[person.id].listOfPassengersSelectedDistances.add(
+                            distancesList?.get(
+                                position
+                            ) ?: return@setMultiChoiceItems
+                        )
+                    } else {
+                        listOfPassengers[person.id].listOfPassengersSelectedDistances.remove(
+                            distancesList?.get(
+                                position
+                            ) ?: return@setMultiChoiceItems
+                        )
+                    }
+
                 }
                 alertDialog.setCancelable(false)
                 alertDialog.setPositiveButton("Ok") { _, _ ->
@@ -127,7 +156,20 @@ class AddPassengers : AppCompatActivity() {
             }
         }
         nextScreenButton.setOnClickListener {
-            // @toDo
+            if (listOfPassengers.isEmpty() || listOfPassengersSelectedChoice.isEmpty()) {
+                Toast.makeText(
+                    applicationContext,
+                    "First add at least one passenger!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+
+                //move to activity where calculations are made
+                val intent = Intent(this, Results::class.java)
+                intent.putExtra("listOfPassengers", listOfPassengers)
+                intent.putExtra("car", car)
+                startActivity(intent)
+            }
         }
     }
 }
