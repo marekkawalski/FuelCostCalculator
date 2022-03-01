@@ -37,7 +37,7 @@ class AddPassengers : AppCompatActivity() {
         val addPassengerButton = findViewById<Button>(R.id.addPassengerButton)
         val deleteLastPassengerButton = findViewById<Button>(R.id.deleteLastButton)
         val nextScreenButton = findViewById<ImageButton>(R.id.buttonNextResults)
-        val tableOfPassengers = findViewById<TableLayout>(R.id.tableLayout)
+        val tableOfPassengers = findViewById<TableLayout>(R.id.tableOfCostsLayout)
         val passengerNameInput = findViewById<TextInputEditText>(R.id.passengerNameInput)
         val passengersTextView = findViewById<TextView>(R.id.passengersTextView)
 
@@ -57,6 +57,9 @@ class AddPassengers : AppCompatActivity() {
                     .show()
                 return@setOnClickListener
             }
+            val person = Person(passengerName as String, ++listOfPassengersIndex)
+            listOfPassengers.add(person)
+
             val passengerNameView = TextView(this)
             val distancesTextView = Button(this)
             val tableRow = TableRow(this)
@@ -73,6 +76,13 @@ class AddPassengers : AppCompatActivity() {
             val selectedChoiceArray = selectedChoiceList.toBooleanArray()
             listOfPassengersSelectedChoice.add(selectedChoiceArray)
 
+            if (distancesList != null) {
+                for (i in distancesList) {
+                    person.listOfPassengersSelectedDistances.add(i)
+                    i.passengersCount++
+                }
+            }
+
             var alertDialog = AlertDialog.Builder(this)
             alertDialog.setTitle("Choose distances for $passengerName")
             alertDialog.setMultiChoiceItems(
@@ -82,14 +92,14 @@ class AddPassengers : AppCompatActivity() {
                 listOfPassengersSelectedChoice.last()[position] = check
 
                 if (check) {
-                    listOfPassengers.last().listOfPassengersSelectedDistances.add(
+                    person.listOfPassengersSelectedDistances.add(
                         distancesList?.get(
                             position
                         ) ?: return@setMultiChoiceItems
                     )
                     distancesList[position].passengersCount++
                 } else {
-                    listOfPassengers.last().listOfPassengersSelectedDistances.remove(
+                    person.listOfPassengersSelectedDistances.remove(
                         distancesList?.get(
                             position
                         ) ?: return@setMultiChoiceItems
@@ -101,9 +111,6 @@ class AddPassengers : AppCompatActivity() {
             alertDialog.setPositiveButton("Ok") { _, _ ->
             }
             alertDialog.show()
-
-            val person = Person(passengerName as String, ++listOfPassengersIndex)
-            listOfPassengers.add(person)
 
             tableRow.addView(passengerNameView)
             tableRow.addView(distancesTextView)
@@ -118,22 +125,26 @@ class AddPassengers : AppCompatActivity() {
                     choiceArray,
                     listOfPassengersSelectedChoice[person.id]
                 ) { _: DialogInterface, position: Int, check: Boolean ->
-                    listOfPassengersSelectedChoice[person.id][position] = check
 
                     if (check) {
+                        listOfPassengersSelectedChoice[person.id][position] = true
                         listOfPassengers[person.id].listOfPassengersSelectedDistances.add(
                             distancesList?.get(
                                 position
                             ) ?: return@setMultiChoiceItems
+
                         )
                         distancesList[position].passengersCount++
+
                     } else {
+                        listOfPassengersSelectedChoice[person.id][position] = false
                         listOfPassengers[person.id].listOfPassengersSelectedDistances.remove(
                             distancesList?.get(
                                 position
                             ) ?: return@setMultiChoiceItems
                         )
                         distancesList[position].passengersCount--
+
                     }
                 }
                 alertDialog.setCancelable(false)
@@ -172,21 +183,31 @@ class AddPassengers : AppCompatActivity() {
                 ).show()
             } else {
 
-                var fuelCostCalculator =
+                val fuelCostCalculator =
                     distancesList?.let { it1 -> FuelCostCalculator(it1, car) }
 
+                if (fuelCostCalculator != null) {
 
-
-                for (i in listOfPassengers) {
-                    if (fuelCostCalculator != null) {
-                        i.costOfFuel = fuelCostCalculator.calculatePassengerTotalCost(i)
+                    for (i in listOfPassengers) {
                         i.coveredDistance = fuelCostCalculator.calculatePassengerTotalDistance(i)
+                        i.costOfFuel = fuelCostCalculator.calculatePassengerTotalCost(i)
                     }
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "error when calculating fuel cost",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
+                }
+                var temp = ""
+                for (i in listOfPassengers) {
+                    temp += i.costOfFuel.toString() + "\n"
                 }
                 Toast.makeText(
                     applicationContext,
-                    listOfPassengers[0].costOfFuel.toString(),
-                    Toast.LENGTH_SHORT
+                    temp,
+                    Toast.LENGTH_LONG
                 ).show()
                 //move to activity where calculations are made
                 val intent = Intent(this, Results::class.java)

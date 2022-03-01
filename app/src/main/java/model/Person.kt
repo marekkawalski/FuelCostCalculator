@@ -20,7 +20,7 @@ class Person : Parcelable {
         id = parcelIn.readInt()
         coveredDistance = parcelIn.readDouble()
         costOfFuel = parcelIn.readDouble()
-        parcelIn.readList(listOfPassengersSelectedDistances, null)
+
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -28,7 +28,6 @@ class Person : Parcelable {
         id.let { parcel.writeInt(it) }
         parcel.writeDouble(coveredDistance)
         parcel.writeDouble(costOfFuel)
-        parcel.writeList(listOfPassengersSelectedDistances)
     }
 
     override fun describeContents(): Int {

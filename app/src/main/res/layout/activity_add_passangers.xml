@@ -75,7 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/addPassengerButton">
 
         <TableLayout
-            android:id="@+id/tableLayout"
+            android:id="@+id/tableOfCostsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"

@@ -5,10 +5,10 @@ import android.os.Parcelable
 
 class Car : Parcelable {
     var carName: String = ""
-    var totalDistance: Double = 0.0
     var totalFuelCost: Double = 0.0
-    var avarageFuelConsumptions: Double = 0.0
-    var costOfFuelLiter: Double = 0.0
+    private var totalDistance: Double = 0.0
+    private var averageFuelConsumptions: Double = 0.0
+    private var costOfFuelLiter: Double = 0.0
 
 
     constructor(carName: String) {
@@ -23,7 +23,7 @@ class Car : Parcelable {
         carName = parcelIn.readString() as String
         totalDistance = parcelIn.readDouble()
         totalFuelCost = parcelIn.readDouble()
-        avarageFuelConsumptions = parcelIn.readDouble()
+        averageFuelConsumptions = parcelIn.readDouble()
         costOfFuelLiter = parcelIn.readDouble()
     }
 
@@ -31,7 +31,7 @@ class Car : Parcelable {
         out.writeString(carName)
         out.writeDouble(totalDistance)
         out.writeDouble(totalFuelCost)
-        out.writeDouble(avarageFuelConsumptions)
+        out.writeDouble(averageFuelConsumptions)
         out.writeDouble(costOfFuelLiter)
     }
 

@@ -18,8 +18,6 @@ class AddDistances : AppCompatActivity() {
     private var listOfDistances = ArrayList<Distance>()
     private var listOfDistancesViews = ArrayList<TableRow>()
     private var distanceInstance: Distance? = null
-   // private var counter: Long = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +26,7 @@ class AddDistances : AppCompatActivity() {
         val addDistancesButton = findViewById<Button>(R.id.addPassengerButton)
         val deleteLastDistanceButton = findViewById<Button>(R.id.deleteLastButton)
         val nextScreenButton = findViewById<ImageButton>(R.id.buttonNextResults)
-        val tableOfDistances = findViewById<TableLayout>(R.id.tableLayout)
+        val tableOfDistances = findViewById<TableLayout>(R.id.tableOfCostsLayout)
         val distanceNameInput = findViewById<TextInputEditText>(R.id.passengerNameInput)
         val distanceInput = findViewById<TextInputEditText>(R.id.distanceInput)
         var addingDistancesComplete = false
@@ -98,6 +96,7 @@ class AddDistances : AppCompatActivity() {
                 ).show()
             } else {
                 val car = intent.getParcelableExtra<Car>("car")
+                intent.getBooleanExtra("dontKnowCost", false)
                 //move to activity where calculations are made
                 val intent = Intent(this, AddPassengers::class.java)
                 intent.putExtra("listOfDistances", listOfDistances)
