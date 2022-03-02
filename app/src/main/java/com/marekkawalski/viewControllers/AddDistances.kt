@@ -36,12 +36,20 @@ class AddDistances : AppCompatActivity() {
             distanceName = distanceNameInput.text.toString()
             distance = distanceInput.text.toString().toDoubleOrNull()
             if (distanceName.isNullOrBlank()) {
-                Toast.makeText(applicationContext, "Provide distance name!", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    applicationContext,
+                    resources.getString(R.string.provide_distance_name),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 return@setOnClickListener
             }
             if (distance == null) {
-                Toast.makeText(applicationContext, "Provide distance!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    resources.getString(R.string.provide_distance),
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
             val distanceNameView = TextView(this)
@@ -66,10 +74,13 @@ class AddDistances : AppCompatActivity() {
             //if everything goes smoothly
             Toast.makeText(
                 applicationContext,
-                "Distance \"${distanceNameView.text}\" added!",
+                "${resources.getString(R.string.distance)} \"${distanceNameView.text}\" ${
+                    resources.getString(
+                        R.string.added
+                    )
+                }",
                 Toast.LENGTH_SHORT
             ).show()
-            //counter++
             distanceInput.text?.clear() //clear input field
             distanceNameInput.text?.clear() //clear input field
             addingDistancesComplete = true
@@ -78,20 +89,28 @@ class AddDistances : AppCompatActivity() {
             if (listOfDistances.isNotEmpty()) {
                 listOfDistances.removeLast()
                 //counter--
-            } else Toast.makeText(applicationContext, "Nothing to delete!", Toast.LENGTH_SHORT)
+            } else Toast.makeText(
+                applicationContext,
+                resources.getString(R.string.nothing_to_delete),
+                Toast.LENGTH_SHORT
+            )
                 .show()
 
             if (listOfDistancesViews.isNotEmpty()) {
                 tableOfDistances.removeView(listOfDistancesViews.last())
                 listOfDistancesViews.removeLast()
-                Toast.makeText(applicationContext, "Distance removed!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    resources.getString(R.string.distance_removed),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
         nextScreenButton.setOnClickListener {
-            if (!addingDistancesComplete) {
+            if (!addingDistancesComplete || listOfDistancesViews.isEmpty()) {
                 Toast.makeText(
                     applicationContext,
-                    "First add at least one distance!",
+                    resources.getString(R.string.first_add_at_least_one_distance),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {

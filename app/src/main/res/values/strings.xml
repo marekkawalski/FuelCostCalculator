@@ -11,9 +11,37 @@
     <string name="average_fuel_consumption">average fuel consumption</string>
     <string name="price_of_fuel_liter">price of fuel liter</string>
 
+    <!--Toast messages and communication with user on main activity-->
+    <string name="provide_car_name">Provide car name!</string>
+    <string name="no_data">No data</string>
+    <string name="provide_average_consumption">Provide average consumption!</string>
+    <string name="provide_price_of_fuel_liter">Provide price per liter!</string>
+    <string name="provide_correct_fuel_consumption">Provide correct average consumption!</string>
+    <string name="provide_correct_price_of_fuel_liter">Provide correct price of fuel liter!</string>
+    <string name="provide_total_cost">Provide total cost!</string>
+
+
     <!--Strings for add distances activity-->
+    <string name="distances">Distances</string>
+    <string name="distance_name">distance name</string>
+    <string name="distance">distance</string>
+    <string name="add_distance">+ ADD DISTANCE</string>
+    <string name="delete_last_distance">- DELETE LAST</string>
+
+    <!--Toast messages and communication with user on add distances activity-->
+    <string name="provide_distance_name">Provide distance name!</string>
+    <string name="provide_distance">Provide distance!</string>
+    <string name="added">added!</string>
+    <string name="nothing_to_delete">Nothing to delete!</string>
+    <string name="distance_removed">Distance removed!</string>
+    <string name="first_add_at_least_one_distance">First add at least one distance!</string>
+
 
     <!--Strings for add passengers activity-->
-
+    <string name="passengers">Passengers</string>
+    <string name="passenger_name">passenger name</string>
+    <string name="add_passenger">+ ADD PASSENGER</string>
+    <string name="delete_last">- DELETE LAST</string>
+    <string name="list_Of_Distances">List of distances</string>
     <!--Strings for results activity-->
 </resources>

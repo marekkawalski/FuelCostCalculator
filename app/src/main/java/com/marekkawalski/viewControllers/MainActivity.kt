@@ -31,10 +31,14 @@ class MainActivity : AppCompatActivity() {
                 .toDoubleOrNull()
 
             if (carMake.isNullOrBlank()) {
-                Toast.makeText(applicationContext, "Provide car name!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    resources.getString(R.string.provide_car_name),
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@OnClickListener
             }
-            car = Car(carMake ?: "no data")
+            car = Car(carMake ?: resources.getString(R.string.no_data))
             if (dontKnowCheckBox?.isChecked == true) {
                 val averageConsumptionInput =
                     findViewById<TextInputEditText>(R.id.averageFuelConsumptionInput)
@@ -43,14 +47,14 @@ class MainActivity : AppCompatActivity() {
                 if (averageConsumptionInput == null) {
                     Toast.makeText(
                         applicationContext,
-                        "Provide average consumption!",
+                        resources.getString(R.string.provide_average_consumption),
                         Toast.LENGTH_SHORT
                     ).show()
                     return@OnClickListener
                 } else if (pricePerLiterInput == null) {
                     Toast.makeText(
                         applicationContext,
-                        "Provide price per liter!",
+                        resources.getString(R.string.provide_price_of_fuel_liter),
                         Toast.LENGTH_SHORT
                     ).show()
                     return@OnClickListener
@@ -63,7 +67,7 @@ class MainActivity : AppCompatActivity() {
                 if (averageConsumption == null) {
                     Toast.makeText(
                         applicationContext,
-                        "Provide correct average consumption!",
+                        resources.getString(R.string.provide_correct_fuel_consumption),
                         Toast.LENGTH_SHORT
                     )
                         .show()
@@ -72,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 if (pricePerLiter == null) {
                     Toast.makeText(
                         applicationContext,
-                        "Provide correct price of fuel liter!",
+                        resources.getString(R.string.provide_correct_price_of_fuel_liter),
                         Toast.LENGTH_SHORT
                     )
                         .show()
@@ -82,7 +86,11 @@ class MainActivity : AppCompatActivity() {
                 car?.averageFuelConsumptions = averageConsumption
             } else {
                 if (totalCost == null) {
-                    Toast.makeText(applicationContext, "Provide total cost!", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        applicationContext,
+                        resources.getString(R.string.provide_total_cost),
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     return@OnClickListener
                 }

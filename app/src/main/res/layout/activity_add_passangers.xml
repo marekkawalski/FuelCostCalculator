@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="+ add passenger"
+        android:text="@string/add_passenger"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/deleteLastButton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="- Delete last"
+        android:text="@string/delete_last"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -47,7 +47,7 @@
             android:id="@+id/passengerNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="passenger name" />
+            android:hint="@string/passenger_name" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:gravity="center"
-        android:text="Passangers"
+        android:text="@string/passengers"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
                     android:background="#f1f1f1"
                     android:gravity="center"
                     android:padding="3dip"
-                    android:text="Passenger name"
+                    android:text="@string/passenger_name"
                     android:textAllCaps="true"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -109,7 +109,7 @@
                     android:background="#f1f1f1"
                     android:gravity="center"
                     android:padding="3dip"
-                    android:text="List of distances"
+                    android:text="@string/list_Of_Distances"
                     android:textAllCaps="true"
                     android:textSize="15sp"
                     android:textStyle="bold"

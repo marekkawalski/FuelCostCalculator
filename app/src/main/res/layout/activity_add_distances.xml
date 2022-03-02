@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="+ add distance"
-        android:textSize="16sp"
+        android:text="@string/add_distance"
+        android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/deleteLastButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,8 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="- Delete last"
-        android:textSize="16sp"
+        android:text="@string/delete_last_distance"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/addPassengerButton"
@@ -48,7 +48,7 @@
             android:id="@+id/passengerNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="distance name" />
+            android:hint="@string/distance_name" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -57,7 +57,7 @@
         android:layout_height="43dp"
         android:layout_marginTop="28dp"
         android:gravity="center"
-        android:text="Distances"
+        android:text="@string/distances"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@
             android:id="@+id/distanceInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="distance" />
+            android:hint="@string/distance" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ScrollView
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:layout_marginHorizontal="10dp"
-            android:stretchColumns="*"> <!-- stretch the second column of the layout-->>
+            android:stretchColumns="*">
 
             <TableRow
                 android:id="@+id/tableRow"
@@ -116,7 +116,7 @@
                     android:gravity="center"
                     android:isScrollContainer="true"
                     android:padding="3dip"
-                    android:text="distance name"
+                    android:text="@string/distance_name"
                     android:textAllCaps="true"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -130,7 +130,7 @@
                     android:gravity="center"
                     android:isScrollContainer="true"
                     android:padding="3dip"
-                    android:text="distance"
+                    android:text="@string/distance"
                     android:textAllCaps="true"
                     android:textSize="15sp"
                     android:textStyle="bold"

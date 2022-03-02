@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">KosztPaliwa</string>
+    <string name="app_full_name">Kalkulator kosztu paliwa</string>
+    <string name="add_a_car">Dodaj samochód</string>
+    <string name="car_make_name">marka samochodu</string>
+    <string name="total_fuel_cost">całkowity koszt paliwa</string>
+    <string name="dont_know_cost">Nie znasz kosztu paliwa?</string>
+    <string name="average_fuel_consumption">średnie spalanie</string>
+    <string name="price_of_fuel_liter">cena litra paliwa</string>
+    <string name="distances">Dystanse</string>
+    <string name="distance_name">nazwa dystansu</string>
+    <string name="distance">dystans</string>
+    <string name="add_distance">+ Dodaj Dystans</string>
+    <string name="delete_last_distance">- Usuń ostatni</string>
+    <string name="passengers">Pasażerowie</string>
+    <string name="passenger_name">Imię pasażera</string>
+    <string name="add_passenger">+ Dodaj Pasażera</string>
+    <string name="delete_last">- Usuń ostatni</string>
+    <string name="list_Of_Distances">Lista dystansów</string>
+    <string name="provide_car_name">Podaj nazwę samochodu!</string>
+    <string name="no_data">brak danych</string>
+    <string name="provide_average_consumption">Podaj średnie spalanie!</string>
+    <string name="provide_price_of_fuel_liter">Podaj cenę za litr paliwa!</string>
+    <string name="provide_correct_fuel_consumption">Podaj poprawne średnie spalanie!</string>
+    <string name="provide_correct_price_of_fuel_liter">Podaj poprawną cenę za litr paliwa!</string>
+    <string name="provide_total_cost">Podaj koszt paliwa!</string>
+    <string name="provide_distance_name">Podaj nazwę dystansu!</string>
+    <string name="provide_distance">Podaj długość dystansu!</string>
+    <string name="added">został dodany!</string>
+    <string name="nothing_to_delete">Nie ma nic do usunięcia!</string>
+    <string name="distance_removed">Dystans usunięty!</string>
+    <string name="first_add_at_least_one_distance">Najpierw dodaj przynajmniej jeden dystans!</string>
+</resources>
