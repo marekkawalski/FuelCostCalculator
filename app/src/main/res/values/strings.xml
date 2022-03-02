@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">FuelCostCalculator</string>
+    <!--Strings for all activities-->
+    <string name="app_name">FuelCost</string>
+
+    <!--Strings for main activity-->
+    <string name="app_full_name">Fuel cost calculator</string>
+    <string name="add_a_car">Add a car</string>
+    <string name="car_make_name">car make/name</string>
+    <string name="total_fuel_cost">total fuel cost</string>
+    <string name="dont_know_cost">Don\'t know cost?</string>
+    <string name="average_fuel_consumption">average fuel consumption</string>
+    <string name="price_of_fuel_liter">price of fuel liter</string>
+
+    <!--Strings for add distances activity-->
+
+    <!--Strings for add passengers activity-->
+
+    <!--Strings for results activity-->
 </resources>

@@ -22,7 +22,7 @@ class AddDistances : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_distances)
-        title = "Fuel cost calculator"
+        title = getString(R.string.app_full_name)
         val addDistancesButton = findViewById<Button>(R.id.addPassengerButton)
         val deleteLastDistanceButton = findViewById<Button>(R.id.deleteLastButton)
         val nextScreenButton = findViewById<ImageButton>(R.id.buttonNextResults)

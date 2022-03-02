@@ -6,9 +6,9 @@ import android.os.Parcelable
 class Car : Parcelable {
     var carName: String = ""
     var totalFuelCost: Double = 0.0
-    private var totalDistance: Double = 0.0
-    private var averageFuelConsumptions: Double = 0.0
-    private var costOfFuelLiter: Double = 0.0
+    var totalDistance: Double = 0.0
+    var averageFuelConsumptions: Double = 0.0
+    var costOfFuelLiter: Double = 0.0
 
 
     constructor(carName: String) {

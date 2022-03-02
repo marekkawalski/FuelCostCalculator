@@ -15,14 +15,13 @@ import model.Car
 class MainActivity : AppCompatActivity() {
     private var carMake: String? = null
     private var totalCost: Double? = null
-    private var totalCostWithoutDistance: Double? = null
     private var car: Car? = null
     private var dontKnowCheckBox: CheckBox? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        title = "Fuel cost calculator"
+        title = getString(R.string.app_full_name)
         val buttonNext = findViewById<ImageButton>(R.id.buttonNext)
         dontKnowCheckBox = findViewById(R.id.dontKnowCostCheckBox)
 
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             car = Car(carMake ?: "no data")
             if (dontKnowCheckBox?.isChecked == true) {
                 val averageConsumptionInput =
-                    findViewById<TextInputEditText>(R.id.avarageFuelConsumptionInput)
+                    findViewById<TextInputEditText>(R.id.averageFuelConsumptionInput)
                 val pricePerLiterInput =
                     findViewById<TextInputEditText>(R.id.pricePerLiterInput)
                 if (averageConsumptionInput == null) {
@@ -57,23 +56,38 @@ class MainActivity : AppCompatActivity() {
                     return@OnClickListener
                 }
 
-                totalCostWithoutDistance =
-                    (averageConsumptionInput.text.toString()
-                        .toDoubleOrNull() + pricePerLiterInput.text.toString().toDoubleOrNull()
-                            )?.div(100)
-                if (totalCostWithoutDistance == null) {
-                    Toast.makeText(applicationContext, "Provide correct data!", Toast.LENGTH_SHORT)
+                val averageConsumption = averageConsumptionInput.text.toString()
+                    .toDoubleOrNull()
+                val pricePerLiter = pricePerLiterInput.text.toString().toDoubleOrNull()
+
+                if (averageConsumption == null) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Provide correct average consumption!",
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     return@OnClickListener
                 }
+                if (pricePerLiter == null) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Provide correct price of fuel liter!",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                    return@OnClickListener
+                }
+                car?.costOfFuelLiter = pricePerLiter
+                car?.averageFuelConsumptions = averageConsumption
             } else {
                 if (totalCost == null) {
                     Toast.makeText(applicationContext, "Provide total cost!", Toast.LENGTH_SHORT)
                         .show()
                     return@OnClickListener
                 }
+                car?.totalFuelCost = totalCost ?: 0.0
             }
-            car?.totalFuelCost = totalCost ?: 0.00
 
             //move data to next activity
             val intent = Intent(this, AddDistances::class.java)
@@ -91,7 +105,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleDontKnowCost() {
         val averageConsumptionLayout =
-            findViewById<TextInputLayout>(R.id.avarageConsumptionInputLayout)
+            findViewById<TextInputLayout>(R.id.averageConsumptionInputLayout)
         val pricePerLiterLayout = findViewById<TextInputLayout>(R.id.pricePerLiterInputLayout)
         if (dontKnowCheckBox?.isChecked == true) {
             averageConsumptionLayout.visibility = View.VISIBLE

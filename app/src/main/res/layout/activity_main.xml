@@ -16,7 +16,8 @@
             android:layout_width="193dp"
             android:layout_height="48dp"
             android:layout_marginTop="36dp"
-            android:text="Add a car"
+            android:gravity="center"
+            android:text="@string/add_a_car"
             android:textAlignment="center"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +41,7 @@
                 android:id="@+id/carMakeInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="car make/name" />
+                android:hint="@string/car_make_name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -48,19 +49,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             app:layout_constraintBottom_toTopOf="@+id/dontKnowCostCheckBox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="30dp"
             app:layout_constraintTop_toBottomOf="@id/textInputLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/totalCostInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="total fuel cost"
+                android:hint="@string/total_fuel_cost"
                 android:isScrollContainer="true"
                 android:textColorHint="#616161" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -70,8 +71,8 @@
             android:layout_width="162dp"
             android:layout_height="48dp"
             android:layout_marginTop="44dp"
-            android:text="Don't know cost?"
-            app:layout_constraintBottom_toTopOf="@+id/avarageConsumptionInputLayout"
+            android:text="@string/dont_know_cost"
+            app:layout_constraintBottom_toTopOf="@+id/averageConsumptionInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.879"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,17 +82,18 @@
             android:id="@+id/buttonNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="TODO"
             app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.98"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.313"
-            app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24"
-            android:contentDescription="TODO" />
+            app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/avarageConsumptionInputLayout"
+            android:id="@+id/averageConsumptionInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -103,10 +105,10 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/avarageFuelConsumptionInput"
+                android:id="@+id/averageFuelConsumptionInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="avarage fuel consumption" />
+                android:hint="@string/average_fuel_consumption" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +127,7 @@
                 android:id="@+id/pricePerLiterInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="price of fuel liter" />
+                android:hint="@string/price_of_fuel_liter" />
         </com.google.android.material.textfield.TextInputLayout>
 
 

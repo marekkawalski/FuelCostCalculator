@@ -16,7 +16,7 @@ class Results : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_results)
-        title = "Fuel cost calculator"
+        title = getString(R.string.app_full_name)
 
         val listOfPassengers = intent.getParcelableArrayListExtra<Person>("listOfPassengers")
         val tableOfPassengers = findViewById<TableLayout>(R.id.tableOfCostsLayout)

@@ -29,7 +29,7 @@ class AddPassengers : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_add_passangers)
-        title = "Fuel cost calculator"
+        title = getString(R.string.app_full_name)
         var listOfPassengersIndex = -1
 
         val car = intent.getParcelableExtra<Car>("car")
@@ -188,6 +188,9 @@ class AddPassengers : AppCompatActivity() {
 
                 if (fuelCostCalculator != null) {
 
+                    if (car?.totalFuelCost == 0.0) {
+                        car.totalFuelCost = fuelCostCalculator.calculateTotalCostOfFuel()
+                    }
                     for (i in listOfPassengers) {
                         i.coveredDistance = fuelCostCalculator.calculatePassengerTotalDistance(i)
                         i.costOfFuel = fuelCostCalculator.calculatePassengerTotalCost(i)
@@ -200,15 +203,6 @@ class AddPassengers : AppCompatActivity() {
                     ).show()
                     return@setOnClickListener
                 }
-                var temp = ""
-                for (i in listOfPassengers) {
-                    temp += i.costOfFuel.toString() + "\n"
-                }
-                Toast.makeText(
-                    applicationContext,
-                    temp,
-                    Toast.LENGTH_LONG
-                ).show()
                 //move to activity where calculations are made
                 val intent = Intent(this, Results::class.java)
                 intent.putExtra("listOfPassengers", listOfPassengers)
