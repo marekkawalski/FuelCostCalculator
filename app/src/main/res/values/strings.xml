@@ -36,12 +36,35 @@
     <string name="distance_removed">Distance removed!</string>
     <string name="first_add_at_least_one_distance">First add at least one distance!</string>
 
-
     <!--Strings for add passengers activity-->
     <string name="passengers">Passengers</string>
     <string name="passenger_name">passenger name</string>
     <string name="add_passenger">+ ADD PASSENGER</string>
     <string name="delete_last">- DELETE LAST</string>
     <string name="list_Of_Distances">List of distances</string>
+
+    <!--Toast messages and communication with user on add add passengers activity-->
+    <string name="provide_passenger_name">Provide passenger name!</string>
+    <string name="choose_distances_for">Choose distances for</string>
+    <string name="Ok">Ok</string>
+    <string name="passenger_removed">Passenger removed</string>
+    <string name="first_add_at_least_one_passenger">First add at least one passenger!</string>
+    <string name="error_when_calculating_fuel_cost">Error when calculating fuel cost</string>
+
     <!--Strings for results activity-->
+    <string name="table_of_costs">Table of costs</string>
+    <string name="cost">cost</string>
+    <string name="title_activity_main_screen">MainScreen</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+
 </resources>

@@ -31,4 +31,12 @@
     <string name="nothing_to_delete">Nie ma nic do usunięcia!</string>
     <string name="distance_removed">Dystans usunięty!</string>
     <string name="first_add_at_least_one_distance">Najpierw dodaj przynajmniej jeden dystans!</string>
+    <string name="provide_passenger_name">Podaj imię pasażera!</string>
+    <string name="choose_distances_for">Wybierz dystanse dla</string>
+    <string name="Ok">Ok</string>
+    <string name="passenger_removed">Pasażer usunięty!</string>
+    <string name="first_add_at_least_one_passenger">Najpierw dodaj przynajmniej jednego pasażera!</string>
+    <string name="error_when_calculating_fuel_cost">Błąd przy obliczaniu kosztu paliwa</string>
+    <string name="table_of_costs">Tabela kosztów</string>
+    <string name="cost">Koszt</string>
 </resources>

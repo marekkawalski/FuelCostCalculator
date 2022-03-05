@@ -40,8 +40,10 @@ class AddPassengers : AppCompatActivity() {
         val tableOfPassengers = findViewById<TableLayout>(R.id.tableOfCostsLayout)
         val passengerNameInput = findViewById<TextInputEditText>(R.id.passengerNameInput)
         val passengersTextView = findViewById<TextView>(R.id.passengersTextView)
+        val buttonPrevious = findViewById<ImageButton>(R.id.buttonPrevious)
 
-        passengersTextView.text = "Passengers \n" + car?.carName
+        passengersTextView.text =
+            " ${resources.getString(R.string.passengers)} \n" + car?.carName
         if (distancesList != null) {
             for (i in distancesList) {
                 choiceList.add(i.distanceName)
@@ -53,7 +55,11 @@ class AddPassengers : AppCompatActivity() {
         addPassengerButton.setOnClickListener {
             passengerName = passengerNameInput.text.toString()
             if (passengerName.isNullOrBlank()) {
-                Toast.makeText(applicationContext, "Provide passenger name!", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    applicationContext,
+                    resources.getString(R.string.provide_passenger_name),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 return@setOnClickListener
             }
@@ -84,7 +90,7 @@ class AddPassengers : AppCompatActivity() {
             }
 
             var alertDialog = AlertDialog.Builder(this)
-            alertDialog.setTitle("Choose distances for $passengerName")
+            alertDialog.setTitle("${resources.getString(R.string.choose_distances_for)} $passengerName")
             alertDialog.setMultiChoiceItems(
                 choiceArray,
                 selectedChoiceArray
@@ -119,7 +125,7 @@ class AddPassengers : AppCompatActivity() {
             distancesTextView.setOnClickListener {
                 alertDialog = AlertDialog.Builder(this)
                 alertDialog.setTitle(
-                    "Choose distances for " + listOfPassengers[person.id].name
+                    "${resources.getString(R.string.choose_distances_for)}" + listOfPassengers[person.id].name
                 )
                 alertDialog.setMultiChoiceItems(
                     choiceArray,
@@ -148,7 +154,7 @@ class AddPassengers : AppCompatActivity() {
                     }
                 }
                 alertDialog.setCancelable(false)
-                alertDialog.setPositiveButton("Ok") { _, _ ->
+                alertDialog.setPositiveButton(resources.getString(R.string.Ok)) { _, _ ->
                 }
                 alertDialog.show()
 
@@ -157,28 +163,38 @@ class AddPassengers : AppCompatActivity() {
         }
         deleteLastPassengerButton.setOnClickListener {
 
-            if (listOfPassengers.isNotEmpty()) {
-                listOfPassengers.removeLast()
+            if (listOfPassengers.isEmpty() || listOfPassengers == null) {
+                Toast.makeText(
+                    applicationContext,
+                    resources.getString(R.string.nothing_to_delete),
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            } else {
                 for (i in listOfPassengers.last().listOfPassengersSelectedDistances) {
                     i.passengersCount--
                 }
-            } else Toast.makeText(applicationContext, "Nothing to delete!", Toast.LENGTH_SHORT)
-                .show()
+                if (listOfPassengersSelectedChoice.isNotEmpty()) listOfPassengersSelectedChoice.removeLast()
 
-            if (listOfPassengersSelectedChoice.isNotEmpty()) listOfPassengersSelectedChoice.removeLast()
+                listOfPassengers.removeLast()
 
-            if (listOfPassengersViews.isNotEmpty()) {
-                tableOfPassengers.removeView(listOfPassengersViews.last())
-                listOfPassengersViews.removeLast()
-                listOfPassengersIndex--
-                Toast.makeText(applicationContext, "Passenger removed!", Toast.LENGTH_SHORT).show()
+                if (listOfPassengersViews.isNotEmpty()) {
+                    tableOfPassengers.removeView(listOfPassengersViews.last())
+                    listOfPassengersViews.removeLast()
+                    listOfPassengersIndex--
+                    Toast.makeText(
+                        applicationContext,
+                        resources.getString(R.string.passenger_removed),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
         nextScreenButton.setOnClickListener {
             if (listOfPassengers.isEmpty() || listOfPassengersSelectedChoice.isEmpty()) {
                 Toast.makeText(
                     applicationContext,
-                    "First add at least one passenger!",
+                    resources.getString(R.string.first_add_at_least_one_passenger),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
@@ -198,7 +214,7 @@ class AddPassengers : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         applicationContext,
-                        "error when calculating fuel cost",
+                        resources.getString(R.string.error_when_calculating_fuel_cost),
                         Toast.LENGTH_SHORT
                     ).show()
                     return@setOnClickListener
@@ -209,6 +225,9 @@ class AddPassengers : AppCompatActivity() {
                 intent.putExtra("car", car)
                 startActivity(intent)
             }
+        }
+        buttonPrevious.setOnClickListener {
+            finish()
         }
     }
 }

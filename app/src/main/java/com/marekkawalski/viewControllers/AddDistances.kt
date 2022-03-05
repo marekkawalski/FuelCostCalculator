@@ -29,6 +29,7 @@ class AddDistances : AppCompatActivity() {
         val tableOfDistances = findViewById<TableLayout>(R.id.tableOfCostsLayout)
         val distanceNameInput = findViewById<TextInputEditText>(R.id.passengerNameInput)
         val distanceInput = findViewById<TextInputEditText>(R.id.distanceInput)
+        val buttonPrevious = findViewById<ImageButton>(R.id.buttonPrevious)
         var addingDistancesComplete = false
 
         addDistancesButton.setOnClickListener {
@@ -122,6 +123,9 @@ class AddDistances : AppCompatActivity() {
                 intent.putExtra("car", car)
                 startActivity(intent)
             }
+        }
+        buttonPrevious.setOnClickListener {
+            finish()
         }
     }
 }

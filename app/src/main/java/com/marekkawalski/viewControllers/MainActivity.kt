@@ -7,6 +7,9 @@ import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.ui.AppBarConfiguration
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.marekkawalski.fuelcostcalculator.R
@@ -18,9 +21,17 @@ class MainActivity : AppCompatActivity() {
     private var car: Car? = null
     private var dontKnowCheckBox: CheckBox? = null
 
+    private lateinit var navController: NavController
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var appBarConfiguration: AppBarConfiguration
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        drawerLayout = findViewById(R.id.drawerLayout)
+
         title = getString(R.string.app_full_name)
         val buttonNext = findViewById<ImageButton>(R.id.buttonNext)
         dontKnowCheckBox = findViewById(R.id.dontKnowCostCheckBox)

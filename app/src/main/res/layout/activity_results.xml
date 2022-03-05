@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:gravity="center"
-        android:text="Table of costs"
+        android:text="@string/table_of_costs"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
                     android:background="#f1f1f1"
                     android:gravity="center"
                     android:padding="3dip"
-                    android:text="Passenger name"
+                    android:text="@string/passenger_name"
                     android:textAllCaps="true"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -63,7 +63,7 @@
                     android:background="#f1f1f1"
                     android:gravity="center"
                     android:padding="3dip"
-                    android:text="cost"
+                    android:text="@string/cost"
                     android:textAllCaps="true"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -72,6 +72,17 @@
 
         </TableLayout>
     </ScrollView>
+
+    <ImageButton
+        android:id="@+id/buttonPrevious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
