@@ -1,5 +1,6 @@
 package com.marekkawalski.viewControllers
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -8,6 +9,7 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.marekkawalski.fuelcostcalculator.R
 import model.Person
 import kotlin.math.roundToInt
@@ -22,6 +24,24 @@ class Results : AppCompatActivity() {
         val listOfPassengers = intent.getParcelableArrayListExtra<Person>("listOfPassengers")
         val tableOfPassengers = findViewById<TableLayout>(R.id.tableOfCostsLayout)
         val buttonPrevious = findViewById<ImageButton>(R.id.buttonPrevious)
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigationView)
+        bottomNavigationView.selectedItemId = R.id.Car
+
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.Car -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.settings -> {
+                    val intent = Intent(this, Settings::class.java)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
 
         if (listOfPassengers != null) {
             for (i in listOfPassengers) {

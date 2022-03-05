@@ -6,6 +6,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
 import com.marekkawalski.fuelcostcalculator.R
 import model.Car
@@ -31,6 +32,25 @@ class AddDistances : AppCompatActivity() {
         val distanceInput = findViewById<TextInputEditText>(R.id.distanceInput)
         val buttonPrevious = findViewById<ImageButton>(R.id.buttonPrevious)
         var addingDistancesComplete = false
+
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigationView)
+        bottomNavigationView.selectedItemId = R.id.Car
+
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.Car -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.settings -> {
+                    val intent = Intent(this, Settings::class.java)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
 
         addDistancesButton.setOnClickListener {
             addingDistancesComplete = false

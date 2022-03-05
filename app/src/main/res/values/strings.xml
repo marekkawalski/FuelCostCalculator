@@ -1,6 +1,9 @@
 <resources>
     <!--Strings for all activities-->
     <string name="app_name">FuelCost</string>
+    <string name="app_name_full" translatable="false">Fuel Cost Calculator</string>
+    <string name="newCar">new Car</string>
+    <string name="settings">settings</string>
 
     <!--Strings for main activity-->
     <string name="app_full_name">Fuel cost calculator</string>
@@ -54,17 +57,6 @@
     <!--Strings for results activity-->
     <string name="table_of_costs">Table of costs</string>
     <string name="cost">cost</string>
-    <string name="title_activity_main_screen">MainScreen</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
 
 
 </resources>

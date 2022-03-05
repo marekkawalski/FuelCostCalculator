@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
 import com.marekkawalski.fuelcostcalculator.R
 import model.Car
@@ -30,8 +31,26 @@ class AddPassengers : AppCompatActivity() {
 
         setContentView(R.layout.activity_add_passangers)
         title = getString(R.string.app_full_name)
-        var listOfPassengersIndex = -1
 
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigationView)
+        bottomNavigationView.selectedItemId = R.id.Car
+
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.Car -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.settings -> {
+                    val intent = Intent(this, Settings::class.java)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
+
+        var listOfPassengersIndex = -1
         val car = intent.getParcelableExtra<Car>("car")
         val distancesList = intent.getParcelableArrayListExtra<Distance>("listOfDistances")
         val addPassengerButton = findViewById<Button>(R.id.addPassengerButton)
@@ -41,6 +60,7 @@ class AddPassengers : AppCompatActivity() {
         val passengerNameInput = findViewById<TextInputEditText>(R.id.passengerNameInput)
         val passengersTextView = findViewById<TextView>(R.id.passengersTextView)
         val buttonPrevious = findViewById<ImageButton>(R.id.buttonPrevious)
+        var selectedDistancesString = ""
 
         passengersTextView.text =
             " ${resources.getString(R.string.passengers)} \n" + car?.carName
@@ -75,7 +95,6 @@ class AddPassengers : AppCompatActivity() {
 
             distancesTextView.gravity = Gravity.CENTER
             distancesTextView.width = WRAP_CONTENT
-            distancesTextView.text = "Tap to change"
 
             listOfPassengersViews.add(tableRow)
 
@@ -88,6 +107,16 @@ class AddPassengers : AppCompatActivity() {
                     i.passengersCount++
                 }
             }
+            for (i in person.listOfPassengersSelectedDistances) {
+                selectedDistancesString += if (i != person.listOfPassengersSelectedDistances.last()) {
+                    i.distanceName + ", "
+                } else {
+                    i.distanceName + " "
+                }
+            }
+            distancesTextView.text = selectedDistancesString.ifEmpty { "nothing" }
+
+            selectedDistancesString = ""
 
             var alertDialog = AlertDialog.Builder(this)
             alertDialog.setTitle("${resources.getString(R.string.choose_distances_for)} $passengerName")
@@ -104,6 +133,7 @@ class AddPassengers : AppCompatActivity() {
                         ) ?: return@setMultiChoiceItems
                     )
                     distancesList[position].passengersCount++
+
                 } else {
                     person.listOfPassengersSelectedDistances.remove(
                         distancesList?.get(
@@ -112,6 +142,15 @@ class AddPassengers : AppCompatActivity() {
                     )
                     distancesList[position].passengersCount--
                 }
+                for (i in person.listOfPassengersSelectedDistances) {
+                    selectedDistancesString += if (i != person.listOfPassengersSelectedDistances.last()) {
+                        i.distanceName + ", "
+                    } else {
+                        i.distanceName + ""
+                    }
+                }
+                distancesTextView.text = selectedDistancesString.ifEmpty { "nothing" }
+                selectedDistancesString = " "
             }
             alertDialog.setCancelable(false)
             alertDialog.setPositiveButton("Ok") { _, _ ->
@@ -125,7 +164,7 @@ class AddPassengers : AppCompatActivity() {
             distancesTextView.setOnClickListener {
                 alertDialog = AlertDialog.Builder(this)
                 alertDialog.setTitle(
-                    "${resources.getString(R.string.choose_distances_for)}" + listOfPassengers[person.id].name
+                    resources.getString(R.string.choose_distances_for) + listOfPassengers[person.id].name
                 )
                 alertDialog.setMultiChoiceItems(
                     choiceArray,
@@ -152,6 +191,16 @@ class AddPassengers : AppCompatActivity() {
                         distancesList[position].passengersCount--
 
                     }
+                    for (i in person.listOfPassengersSelectedDistances) {
+                        selectedDistancesString += if (i != person.listOfPassengersSelectedDistances.last()) {
+                            i.distanceName + ", "
+                        } else {
+                            i.distanceName + " "
+                        }
+                    }
+
+                    distancesTextView.text = selectedDistancesString.ifEmpty { "nothing" }
+                    selectedDistancesString = ""
                 }
                 alertDialog.setCancelable(false)
                 alertDialog.setPositiveButton(resources.getString(R.string.Ok)) { _, _ ->
@@ -163,7 +212,7 @@ class AddPassengers : AppCompatActivity() {
         }
         deleteLastPassengerButton.setOnClickListener {
 
-            if (listOfPassengers.isEmpty() || listOfPassengers == null) {
+            if (listOfPassengers.isEmpty()) {
                 Toast.makeText(
                     applicationContext,
                     resources.getString(R.string.nothing_to_delete),

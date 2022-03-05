@@ -7,13 +7,12 @@ import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
-import androidx.navigation.ui.AppBarConfiguration
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.marekkawalski.fuelcostcalculator.R
 import model.Car
+
 
 class MainActivity : AppCompatActivity() {
     private var carMake: String? = null
@@ -21,18 +20,31 @@ class MainActivity : AppCompatActivity() {
     private var car: Car? = null
     private var dontKnowCheckBox: CheckBox? = null
 
-    private lateinit var navController: NavController
-    private lateinit var drawerLayout: DrawerLayout
-    private lateinit var appBarConfiguration: AppBarConfiguration
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        drawerLayout = findViewById(R.id.drawerLayout)
-
         title = getString(R.string.app_full_name)
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigationView)
+        bottomNavigationView.selectedItemId = R.id.Car
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.Car -> {
+                    if (this is MainActivity) true
+                    else {
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                R.id.settings -> {
+                    val intent = Intent(this, Settings::class.java)
+                    startActivity(intent)
+                }
+            }
+            true
+        }
+
         val buttonNext = findViewById<ImageButton>(R.id.buttonNext)
         dontKnowCheckBox = findViewById(R.id.dontKnowCostCheckBox)
 

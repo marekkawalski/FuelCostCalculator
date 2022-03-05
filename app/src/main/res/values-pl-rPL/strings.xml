@@ -39,4 +39,6 @@
     <string name="error_when_calculating_fuel_cost">Błąd przy obliczaniu kosztu paliwa</string>
     <string name="table_of_costs">Tabela kosztów</string>
     <string name="cost">Koszt</string>
+    <string name="newCar">nowe auto</string>
+    <string name="settings">ustawienia</string>
 </resources>

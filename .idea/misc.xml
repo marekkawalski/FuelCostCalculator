@@ -3,33 +3,54 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable-v24/car.xml" value="0.261" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.187" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.187" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/assesment.xml" value="0.261" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/car.xml" value="0.261" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/headercolor.xml" value="0.261" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1925" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/ic_baseline_arrow_back_ios_new_24.xml" value="0.1925" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.276" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/ic_launcher_background.xml" value="0.187" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.187" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/ic_menu_camera.xml" value="0.172" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/person.xml" value="0.261" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/road.xml" value="0.261" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/selector.xml" value="0.261" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/settings.xml" value="0.261" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/drawable/side_nav_bar.xml" value="0.261" />
-        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_add_distances.xml" value="0.536" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_add_distances.xml" value="0.5" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_add_passangers.xml" value="0.4" />
-        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_main_screen.xml" value="0.2" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/activity_results.xml" value="0.264" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/app_bar_main_screen.xml" value="0.13381787088499358" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/bottom_nav_menu.xml" value="0.21932449764856776" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/content_main_screen.xml" value="0.1838392475416845" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/fragment_add_car.xml" value="0.2099187687045746" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/fragment_add_distances.xml" value="0.2099187687045746" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/fragment_add_passengers.xml" value="0.2099187687045746" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/fragment_gallery.xml" value="0.11928174433518597" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/fragment_home.xml" value="0.11928174433518597" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/fragment_results.xml" value="0.2099187687045746" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/fragment_slideshow.xml" value="0.11928174433518597" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/header.xml" value="0.25" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/headerfile.xml" value="0.2099187687045746" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/multipleChoice.xml" value="0.21932449764856776" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/multiple_choice.xml" value="0.21932449764856776" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/nav_header_main_screen.xml" value="0.11928174433518597" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/settings_activity.xml" value="0.2099187687045746" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/switch_item.xml" value="0.2099187687045746" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/layout/toolbar.xml" value="0.2099187687045746" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/menu/activity_main_drawer.xml" value="0.2099187687045746" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/menu/drawer_manu.xml" value="0.25" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/menu/drawer_menu.xml" value="0.2099187687045746" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/menu/main_screen.xml" value="0.2099187687045746" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/menu/menu_navigation.xml" value="0.2099187687045746" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.187" />
         <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.187" />
+        <entry key="..\:/Studia/Android/FuelCostCalculator/app/src/main/res/xml/root_preferences.xml" value="0.33" />
       </map>
     </option>
   </component>

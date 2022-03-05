@@ -9,10 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.FuelCostCalculator">
         <activity
-            android:name="com.marekkawalski.viewControllers.MainScreen"
-            android:exported="false"
-            android:label="@string/title_activity_main_screen"
-            android:theme="@style/Theme.FuelCostCalculator.NoActionBar" />
+            android:name="com.marekkawalski.viewControllers.Settings"
+            android:exported="false" />
         <activity
             android:name="com.marekkawalski.viewControllers.Results"
             android:exported="false"
