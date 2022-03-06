@@ -15,6 +15,7 @@ import model.Car
 import model.Distance
 import model.FuelCostCalculator
 import model.Person
+import otherControllers.SettingsController
 
 
 class AddPassengers : AppCompatActivity() {
@@ -32,9 +33,11 @@ class AddPassengers : AppCompatActivity() {
         setContentView(R.layout.activity_add_passangers)
         title = getString(R.string.app_full_name)
 
+        val settings = SettingsController()
+        settings.loadSettings(this)
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigationView)
         bottomNavigationView.selectedItemId = R.id.Car
-
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -43,7 +46,7 @@ class AddPassengers : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.settings -> {
-                    val intent = Intent(this, Settings::class.java)
+                    val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
                 }
             }

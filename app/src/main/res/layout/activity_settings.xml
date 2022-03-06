@@ -3,6 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.marekkawalski.viewControllers.Settings">
+    tools:context="com.marekkawalski.viewControllers.SettingsActivity">
 
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="1dp"
+        android:orientation="horizontal" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.marekkawalski.fuelcostcalculator.R
 import model.Person
+import otherControllers.SettingsController
 import kotlin.math.roundToInt
 
 class Results : AppCompatActivity() {
@@ -20,6 +21,9 @@ class Results : AppCompatActivity() {
 
         setContentView(R.layout.activity_results)
         title = getString(R.string.app_full_name)
+
+        val settings = SettingsController()
+        settings.loadSettings(this)
 
         val listOfPassengers = intent.getParcelableArrayListExtra<Person>("listOfPassengers")
         val tableOfPassengers = findViewById<TableLayout>(R.id.tableOfCostsLayout)
@@ -36,7 +40,7 @@ class Results : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.settings -> {
-                    val intent = Intent(this, Settings::class.java)
+                    val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -54,9 +58,11 @@ class Results : AppCompatActivity() {
 
                 passengerNameView.gravity = Gravity.CENTER
                 passengerNameView.width = WRAP_CONTENT
+                passengerNameView.textSize = 16F
 
                 costTextView.gravity = Gravity.CENTER
                 costTextView.width = WRAP_CONTENT
+                costTextView.textSize = 16F
 
                 tableRow.addView(passengerNameView)
                 tableRow.addView(costTextView)

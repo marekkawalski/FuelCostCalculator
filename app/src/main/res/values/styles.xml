@@ -13,4 +13,7 @@
         />
     </style>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+    </style>
 </resources>

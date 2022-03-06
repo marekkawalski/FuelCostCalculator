@@ -53,5 +53,4 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "com.google.android.material:material:$version"
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
-
 }

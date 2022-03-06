@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Enable dark mode">
+
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="darkMode"
+            android:summaryOff="Dark mode is deactivated"
+            android:summaryOn="Dark mode is activated"
+            android:title="Dark mode" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Choose application language">
+        <ListPreference
+            android:defaultValue="false"
+            android:entries="@array/availableLanguages"
+            android:entryValues="@array/itemsValue"
+            android:key="LANGUAGE"
+            android:title="Language" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
+

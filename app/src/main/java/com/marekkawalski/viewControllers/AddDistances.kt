@@ -11,6 +11,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.marekkawalski.fuelcostcalculator.R
 import model.Car
 import model.Distance
+import otherControllers.SettingsController
 
 class AddDistances : AppCompatActivity() {
     private var distanceName: String? = null
@@ -24,6 +25,10 @@ class AddDistances : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_distances)
         title = getString(R.string.app_full_name)
+
+        val settings = SettingsController()
+        settings.loadSettings(this)
+
         val addDistancesButton = findViewById<Button>(R.id.addPassengerButton)
         val deleteLastDistanceButton = findViewById<Button>(R.id.deleteLastButton)
         val nextScreenButton = findViewById<ImageButton>(R.id.buttonNextResults)
@@ -45,7 +50,7 @@ class AddDistances : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.settings -> {
-                    val intent = Intent(this, Settings::class.java)
+                    val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
                 }
             }

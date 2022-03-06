@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.marekkawalski.fuelcostcalculator.R
 import model.Car
+import otherControllers.SettingsController
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,20 +26,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         title = getString(R.string.app_full_name)
 
+        val settings = SettingsController()
+        settings.loadSettings(this)
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigationView)
         bottomNavigationView.selectedItemId = R.id.Car
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.Car -> {
-                    if (this is MainActivity) true
-                    else {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                    }
-                }
                 R.id.settings -> {
-                    val intent = Intent(this, Settings::class.java)
+                    val intent = Intent(this, SettingsActivity::class.java)
                     startActivity(intent)
                 }
             }
@@ -146,6 +143,7 @@ class MainActivity : AppCompatActivity() {
             pricePerLiterLayout.visibility = View.GONE
         }
     }
+
 }
 
 
