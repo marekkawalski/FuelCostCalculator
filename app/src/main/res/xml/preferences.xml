@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="Enable dark mode">
-
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="darkMode"
-            android:summaryOff="Dark mode is deactivated"
-            android:summaryOn="Dark mode is activated"
-            android:title="Dark mode" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Choose application language">
+    <PreferenceCategory android:title="@string/appSettings">
         <ListPreference
-            android:defaultValue="false"
-            android:entries="@array/availableLanguages"
-            android:entryValues="@array/itemsValue"
-            android:key="LANGUAGE"
-            android:title="Language" />
+            app:defaultValue="true"
+            app:entries="@array/dark_mode_entries"
+            app:entryValues="@array/dark_mode_values"
+            app:icon="@drawable/ic_baseline_dark_mode_24"
+            app:key="appThemeMode"
+            app:title="@string/appTheme"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="default"
+            app:entries="@array/language_entries"
+            app:entryValues="@array/language_entries_values"
+            app:icon="@drawable/ic_baseline_language_24"
+            app:key="appLanguage"
+            app:title="@string/appLanguage"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
-
+    <PreferenceCategory android:title="@string/other">
+        <Preference
+            android:summary="@string/clickToOpenMyWebsite"
+            app:icon="@drawable/ic_baseline_open_in_browser_24"
+            app:title="@string/website">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://marekkawalski.netlify.app/" />
+        </Preference>
+        <Preference
+            android:icon="@drawable/ic_baseline_info_24"
+            android:summary="1.0"
+            app:title="@string/appVersion" />
+    </PreferenceCategory>
 </PreferenceScreen>
 

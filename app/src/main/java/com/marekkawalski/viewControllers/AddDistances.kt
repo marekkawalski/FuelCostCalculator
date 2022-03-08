@@ -27,7 +27,7 @@ class AddDistances : AppCompatActivity() {
         title = getString(R.string.app_full_name)
 
         val settings = SettingsController()
-        settings.loadSettings(this)
+        settings.loadSettings(this, resources)
 
         val addDistancesButton = findViewById<Button>(R.id.addPassengerButton)
         val deleteLastDistanceButton = findViewById<Button>(R.id.deleteLastButton)

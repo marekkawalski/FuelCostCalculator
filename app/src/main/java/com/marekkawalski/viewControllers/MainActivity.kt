@@ -23,11 +23,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        title = getString(R.string.app_full_name)
 
         val settings = SettingsController()
-        settings.loadSettings(this)
+        settings.loadSettings(this, resources)
+
+        setContentView(R.layout.activity_main)
+        title = getString(R.string.app_full_name)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigationView)
         bottomNavigationView.selectedItemId = R.id.Car
@@ -143,7 +144,6 @@ class MainActivity : AppCompatActivity() {
             pricePerLiterLayout.visibility = View.GONE
         }
     }
-
 }
 
 

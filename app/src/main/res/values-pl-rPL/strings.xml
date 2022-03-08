@@ -41,4 +41,17 @@
     <string name="cost">Koszt</string>
     <string name="newCar">nowe auto</string>
     <string name="settings">ustawienia</string>
+    <string name="appTheme">Motyw aplikacji</string>
+    <string name="appLanguage">Język aplijacji</string>
+    <string name="website">Strona Internetowa</string>
+    <string name="appVersion">Wersja aplikacji</string>
+    <string name="appSettings">Ustawienia</string>
+    <string name="other">Inne</string>
+    <string name="clickToOpenMyWebsite">Kliknij, żeby odwiedzić moją stronę Internetową</string>
+    <string name="systemPreferences">według ustawień systemowych</string>
+    <string name="darkMode">tryb ciemny</string>
+    <string name="lightMode">tryb jasny</string>
+    <string name="english">angielski</string>
+    <string name="polish">polski</string>
+    <string name="AutoBattery">optymalizuj pod kątem użycia baterii</string>
 </resources>

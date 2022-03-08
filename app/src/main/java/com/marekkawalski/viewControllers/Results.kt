@@ -23,7 +23,7 @@ class Results : AppCompatActivity() {
         title = getString(R.string.app_full_name)
 
         val settings = SettingsController()
-        settings.loadSettings(this)
+        settings.loadSettings(this, resources)
 
         val listOfPassengers = intent.getParcelableArrayListExtra<Person>("listOfPassengers")
         val tableOfPassengers = findViewById<TableLayout>(R.id.tableOfCostsLayout)

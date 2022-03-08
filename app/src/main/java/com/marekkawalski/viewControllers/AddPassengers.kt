@@ -30,11 +30,11 @@ class AddPassengers : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val settings = SettingsController()
+        settings.loadSettings(this, resources)
+
         setContentView(R.layout.activity_add_passangers)
         title = getString(R.string.app_full_name)
-
-        val settings = SettingsController()
-        settings.loadSettings(this)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigationView)
         bottomNavigationView.selectedItemId = R.id.Car

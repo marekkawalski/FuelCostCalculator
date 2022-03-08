@@ -49,7 +49,7 @@
     <!--Toast messages and communication with user on add add passengers activity-->
     <string name="provide_passenger_name">Provide passenger name!</string>
     <string name="choose_distances_for">Choose distances for</string>
-    <string name="Ok">Ok</string>
+    <string name="Ok">OK</string>
     <string name="passenger_removed">Passenger removed</string>
     <string name="first_add_at_least_one_passenger">First add at least one passenger!</string>
     <string name="error_when_calculating_fuel_cost">Error when calculating fuel cost</string>
@@ -57,8 +57,23 @@
     <!--Strings for results activity-->
     <string name="table_of_costs">Table of costs</string>
     <string name="cost">cost</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--Strings for settings activity-->
+    <string name="appTheme">App theme</string>
+    <string name="appLanguage">App language</string>
+    <string name="website">Website</string>
+    <string name="appVersion">App version</string>
+    <string name="appSettings">Settings</string>
+    <string name="other">Other</string>
+    <string name="clickToOpenMyWebsite">Click to open my website</string>
 
+    <!--Strings for dark_mode_entries-->
+    <string name="systemPreferences">System preferences</string>
+    <string name="darkMode">Dark mode</string>
+    <string name="lightMode">Light mode</string>
+    <string name="AutoBattery">Auto Battery Dark Mode</string>
+
+    <!--Strings for language_entries-->
+    <string name="english">english</string>
+    <string name="polish">polish</string>
 </resources>
