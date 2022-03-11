@@ -54,4 +54,15 @@
     <string name="english">angielski</string>
     <string name="polish">polski</string>
     <string name="AutoBattery">optymalizuj pod kątem użycia baterii</string>
+    <string name="addCar">+ Dodaj auto</string>
+    <string name="deleteCar">- usuń ostatni</string>
+    <string name="carName">Marka auta</string>
+    <string name="fuelCost">Koszt paliwa</string>
+    <string name="home">start</string>
+    <string name="car">Auto</string>
+    <string name="notSetYet">Jeszcze nieustawiony</string>
+    <string name="car_removed">Samochód usunięty!</string>
+    <string name="addAtLeastOneCar">Dodaj co najmniej jeden samochód!</string>
+    <string name="chooseCarsFor">Wybierz auta dla</string>
+    <string name="carList">Auta</string>
 </resources>

@@ -4,7 +4,7 @@
     <item
         android:id="@+id/Car"
         android:icon="@drawable/car"
-        android:title="@string/newCar" />
+        android:title="@string/home" />
     <item
         android:id="@+id/settings"
         android:icon="@drawable/settings"

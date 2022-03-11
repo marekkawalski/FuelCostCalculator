@@ -19,7 +19,7 @@ class Car : Parcelable {
         return 0
     }
 
-    private constructor(parcelIn: Parcel) {
+    constructor(parcelIn: Parcel) {
         carName = parcelIn.readString() as String
         totalDistance = parcelIn.readDouble()
         totalFuelCost = parcelIn.readDouble()

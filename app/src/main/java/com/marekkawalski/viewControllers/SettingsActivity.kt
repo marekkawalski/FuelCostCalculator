@@ -70,7 +70,7 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
             }
 
             val intent = Intent(this, MainActivity::class.java)
-// set the new task and clear flags
+            // set the new task and clear flags
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }

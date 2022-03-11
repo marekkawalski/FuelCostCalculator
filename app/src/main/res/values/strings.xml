@@ -4,6 +4,7 @@
     <string name="app_name_full" translatable="false">Fuel Cost Calculator</string>
     <string name="newCar">new Car</string>
     <string name="settings">settings</string>
+    <string name="home">home</string>
 
     <!--Strings for main activity-->
     <string name="app_full_name">Fuel cost calculator</string>
@@ -13,6 +14,11 @@
     <string name="dont_know_cost">Don\'t know cost?</string>
     <string name="average_fuel_consumption">average fuel consumption</string>
     <string name="price_of_fuel_liter">price of fuel liter</string>
+    <string name="addCar">+ Add car</string>
+    <string name="deleteCar">- Delete last</string>
+    <string name="carName">Car name</string>
+    <string name="fuelCost">Fuel cost</string>
+
 
     <!--Toast messages and communication with user on main activity-->
     <string name="provide_car_name">Provide car name!</string>
@@ -22,6 +28,10 @@
     <string name="provide_correct_fuel_consumption">Provide correct average consumption!</string>
     <string name="provide_correct_price_of_fuel_liter">Provide correct price of fuel liter!</string>
     <string name="provide_total_cost">Provide total cost!</string>
+    <string name="car">Car</string>
+    <string name="car_removed">Car removed!</string>
+    <string name="notSetYet">Not set yet!</string>
+    <string name="addAtLeastOneCar">Add at least one car!</string>
 
 
     <!--Strings for add distances activity-->
@@ -30,6 +40,7 @@
     <string name="distance">distance</string>
     <string name="add_distance">+ ADD DISTANCE</string>
     <string name="delete_last_distance">- DELETE LAST</string>
+    <string name="carList">Cars</string>
 
     <!--Toast messages and communication with user on add distances activity-->
     <string name="provide_distance_name">Provide distance name!</string>
@@ -38,6 +49,7 @@
     <string name="nothing_to_delete">Nothing to delete!</string>
     <string name="distance_removed">Distance removed!</string>
     <string name="first_add_at_least_one_distance">First add at least one distance!</string>
+    <string name="chooseCarsFor">Choose cars for </string>
 
     <!--Strings for add passengers activity-->
     <string name="passengers">Passengers</string>

@@ -137,6 +137,21 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintHorizontal_weight="1" />
+
+                <TextView
+                    android:id="@+id/carsListTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/teal_200"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:isScrollContainer="true"
+                    android:padding="3dip"
+                    android:text="@string/carList"
+                    android:textAllCaps="true"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintHorizontal_weight="1" />
             </TableRow>
         </TableLayout>
     </ScrollView>

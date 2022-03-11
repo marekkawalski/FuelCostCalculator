@@ -2,10 +2,10 @@ package com.marekkawalski.viewControllers
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
-import android.widget.CheckBox
-import android.widget.ImageButton
-import android.widget.Toast
+import android.view.ViewGroup
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     private var totalCost: Double? = null
     private var car: Car? = null
     private var dontKnowCheckBox: CheckBox? = null
+    private var listOfCars = ArrayList<Car>()
+    private var listOfCarsViews = ArrayList<TableRow>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +44,18 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        val carNameInput = findViewById<TextInputEditText>(R.id.carMakeInput)
+        val totalCostInput = findViewById<TextInputEditText>(R.id.totalCostInput)
 
-        val buttonNext = findViewById<ImageButton>(R.id.buttonNext)
         dontKnowCheckBox = findViewById(R.id.dontKnowCostCheckBox)
+        val tableCars = findViewById<TableLayout>(R.id.tableOfCars)
 
-        buttonNext.setOnClickListener(View.OnClickListener {
-            carMake = findViewById<TextInputEditText>(R.id.carMakeInput).text.toString()
-            totalCost = findViewById<TextInputEditText>(R.id.totalCostInput).text.toString()
+        val buttonAddCar = findViewById<Button>(R.id.buttonAddCar)
+
+        buttonAddCar.setOnClickListener OnClickListener@{
+
+            carMake = carNameInput.text.toString()
+            totalCost = totalCostInput.text.toString()
                 .toDoubleOrNull()
 
             if (carMake.isNullOrBlank()) {
@@ -105,6 +112,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 car?.costOfFuelLiter = pricePerLiter
                 car?.averageFuelConsumptions = averageConsumption
+
+                pricePerLiterInput.text?.clear()
+                averageConsumptionInput.text?.clear()
+
             } else {
                 if (totalCost == null) {
                     Toast.makeText(
@@ -118,19 +129,89 @@ class MainActivity : AppCompatActivity() {
                 car?.totalFuelCost = totalCost ?: 0.0
             }
 
-            //move data to next activity
-            val intent = Intent(this, AddDistances::class.java)
-            intent.putExtra("car", car)
-            startActivity(intent)
-        })
+            //create new table rows as user adds more cars
+            val carNameView = TextView(this)
+            val carFuelView = TextView(this)
+            val tableRow: TableRow?
+            carNameView.text = car?.carName
+            carNameView.gravity = Gravity.CENTER
+            carNameView.width = ViewGroup.LayoutParams.WRAP_CONTENT
+
+            if (car?.totalFuelCost == 0.0) {
+                carFuelView.text = resources.getString(R.string.notSetYet)
+            } else {
+                carFuelView.text = car?.totalFuelCost.toString()
+            }
+            carFuelView.gravity = Gravity.CENTER
+            carFuelView.width = ViewGroup.LayoutParams.WRAP_CONTENT
+
+            tableRow = TableRow(this)
+            tableRow.addView(carNameView)
+            tableRow.addView(carFuelView)
+
+            tableCars.addView(tableRow)
+            listOfCarsViews.add(tableRow)
+
+            //add car to list of cars
+            listOfCars.add(car ?: return@OnClickListener)
+
+            //if everything goes smoothly
+            Toast.makeText(
+                applicationContext,
+                "${resources.getString(R.string.car)} \"${carNameView.text}\" ${
+                    resources.getString(
+                        R.string.added
+                    )
+                }",
+                Toast.LENGTH_SHORT
+            ).show()
+            carNameInput.text?.clear() //clear input field
+            totalCostInput.text?.clear() //clear input field
+
+        }
+
+        val buttonDeleteCar = findViewById<Button>(R.id.buttonDeleteLastCar)
+        buttonDeleteCar.setOnClickListener {
+            if (listOfCars.isNotEmpty()) {
+                listOfCars.removeLast()
+            } else Toast.makeText(
+                applicationContext,
+                resources.getString(R.string.nothing_to_delete),
+                Toast.LENGTH_SHORT
+            )
+                .show()
+
+            if (listOfCarsViews.isNotEmpty()) {
+                tableCars.removeView(listOfCarsViews.last())
+                listOfCarsViews.removeLast()
+                Toast.makeText(
+                    applicationContext,
+                    resources.getString(R.string.car_removed),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+        val buttonNext = findViewById<ImageButton>(R.id.buttonNext)
+        buttonNext.setOnClickListener {
+
+            if (listOfCars.isNotEmpty()) {
+                //move data to next activity
+                val intent = Intent(this, AddDistances::class.java)
+                intent.putExtra("listOfCars", listOfCars)
+                startActivity(intent)
+            } else {
+                Toast.makeText(
+                    applicationContext,
+                    resources.getString(R.string.addAtLeastOneCar),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
 
         dontKnowCheckBox?.setOnCheckedChangeListener { _, _ ->
             handleDontKnowCost()
         }
     }
-
-    operator fun Double?.plus(other: Double?): Double? =
-        if (this != null && other != null) this + other else null
 
     private fun handleDontKnowCost() {
         val averageConsumptionLayout =
