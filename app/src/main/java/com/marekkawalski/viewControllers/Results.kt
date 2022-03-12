@@ -2,6 +2,7 @@ package com.marekkawalski.viewControllers
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageButton
@@ -28,6 +29,9 @@ class Results : AppCompatActivity() {
         val listOfPassengers = intent.getParcelableArrayListExtra<Person>("listOfPassengers")
         val tableOfPassengers = findViewById<TableLayout>(R.id.tableOfCostsLayout)
         val buttonPrevious = findViewById<ImageButton>(R.id.buttonPrevious)
+        val mapOfPayments = mutableMapOf<Int, Double>()
+        val mapOfDebts = mutableMapOf<Int, Double>()
+
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigationView)
         bottomNavigationView.selectedItemId = R.id.Car
@@ -48,25 +52,41 @@ class Results : AppCompatActivity() {
         }
 
         if (listOfPassengers != null) {
-            for (i in listOfPassengers) {
-                val passengerNameView = TextView(this)
-                val costTextView = TextView(this)
-                val tableRow = TableRow(this)
+            for (person in listOfPassengers) {
+                mapOfDebts[person.id] = person.costOfFuel
+                mapOfPayments[person.id] = person.howMuchPaid
+            }
+            val sortedMapOfDebts = mapOfDebts.toList().sortedBy { (_, value) -> value }.toMap()
+            val sortedMapOfPayments =
+                mapOfPayments.toList().sortedBy { (_, value) -> value }.toMap()
 
-                passengerNameView.text = i.name
-                costTextView.text = ((i.costOfFuel * 100.0).roundToInt() / 100.0).toString()
+            for (person in listOfPassengers) {
+                val passengerNameView = TextView(this)
+                val howMuchTextView = TextView(this)
+                val wireToTextView = TextView(this)
+                val tableRow = TableRow(this)
 
                 passengerNameView.gravity = Gravity.CENTER
                 passengerNameView.width = WRAP_CONTENT
                 passengerNameView.textSize = 16F
 
-                costTextView.gravity = Gravity.CENTER
-                costTextView.width = WRAP_CONTENT
-                costTextView.textSize = 16F
+                howMuchTextView.gravity = Gravity.CENTER
+                howMuchTextView.width = WRAP_CONTENT
+                howMuchTextView.textSize = 16F
+
+                wireToTextView.gravity = Gravity.CENTER
+                wireToTextView.width = WRAP_CONTENT
+                wireToTextView.textSize = 16F
+
+                passengerNameView.text = person.name
+                howMuchTextView.text = ((person.costOfFuel * 100.0).roundToInt() / 100.0).toString()
 
                 tableRow.addView(passengerNameView)
-                tableRow.addView(costTextView)
+                tableRow.addView(wireToTextView)
+                tableRow.addView(howMuchTextView)
                 tableOfPassengers.addView(tableRow)
+                Log.i("sorttest", person.howMuchPaid.toString())
+
             }
         }
         buttonPrevious.setOnClickListener {

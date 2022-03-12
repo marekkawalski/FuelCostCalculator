@@ -9,6 +9,8 @@ class Person : Parcelable {
     var coveredDistance: Double = 0.0
     var costOfFuel: Double = 0.0
     var listOfPassengersSelectedDistances = ArrayList<Distance>()
+    var howMuchPaid: Double = 0.0
+    var listOfPayments = ArrayList<Double>()
 
     constructor(name: String, id: Int) {
         this.name = name
@@ -20,7 +22,7 @@ class Person : Parcelable {
         id = parcelIn.readInt()
         coveredDistance = parcelIn.readDouble()
         costOfFuel = parcelIn.readDouble()
-
+        howMuchPaid = parcelIn.readDouble()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -28,6 +30,7 @@ class Person : Parcelable {
         id.let { parcel.writeInt(it) }
         parcel.writeDouble(coveredDistance)
         parcel.writeDouble(costOfFuel)
+        parcel.writeDouble(howMuchPaid)
     }
 
     override fun describeContents(): Int {

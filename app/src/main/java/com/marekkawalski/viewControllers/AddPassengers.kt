@@ -316,9 +316,10 @@ class AddPassengers : AppCompatActivity() {
                     ).show()
                     return@setOnClickListener
                 }
-                //move to activity where results are shown
-                val intent = Intent(this, Results::class.java)
+                //move to next activity
+                val intent = Intent(this, AddPayers::class.java)
                 intent.putExtra("listOfPassengers", listOfPassengers)
+                intent.putExtra("listOfCars", listOfCars)
                 startActivity(intent)
             }
         }

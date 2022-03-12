@@ -30,7 +30,7 @@
     <string name="provide_total_cost">Provide total cost!</string>
     <string name="car">Car</string>
     <string name="car_removed">Car removed!</string>
-    <string name="notSetYet">Not set yet!</string>
+    <string name="notSetYet">Not calculated yet!</string>
     <string name="addAtLeastOneCar">Add at least one car!</string>
 
 
@@ -66,9 +66,25 @@
     <string name="first_add_at_least_one_passenger">First add at least one passenger!</string>
     <string name="error_when_calculating_fuel_cost">Error when calculating fuel cost</string>
 
+    <!--Strings for payments activity-->
+    <string name="fuelPayments">Fuel payments</string>
+    <string name="howMuchYouPaid">How much you paid?</string>
+    <string name="addPayment">+ Add payment</string>
+    <string name="payerName">Payer Name</string>
+    <string name="payment">Payment</string>
+    <string name="choosePayer">Who paid?</string>
+    <string name="forWhatCar">For what car?</string>
+
+    <!--Toast messages and communication with user on payments activity-->
+    <string name="providePayment">Provide payment</string>
+    <string name="fuelCostsAreNotEqual">Total fuel cost is not equal to what passengers paid</string>
+    <string name="paymentRemoved">Payment removed</string>
+
+
     <!--Strings for results activity-->
     <string name="table_of_costs">Table of costs</string>
-    <string name="cost">cost</string>
+    <string name="cost">how much</string>
+    <string name="whoToWireMoney">wire to</string>
 
     <!--Strings for settings activity-->
     <string name="appTheme">App theme</string>

@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.FuelCostCalculator">
         <activity
+            android:name="com.marekkawalski.viewControllers.AddPayers"
+            android:exported="false" />
+        <activity
             android:name="com.marekkawalski.viewControllers.SettingsActivity"
             android:exported="false" />
         <activity
