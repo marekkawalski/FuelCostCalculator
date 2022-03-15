@@ -11,6 +11,7 @@ class Person : Parcelable {
     var listOfPassengersSelectedDistances = ArrayList<Distance>()
     var howMuchPaid: Double = 0.0
     var listOfPayments = ArrayList<Double>()
+    var mapOfPayments = mutableMapOf<Person, Double>()
 
     constructor(name: String, id: Int) {
         this.name = name

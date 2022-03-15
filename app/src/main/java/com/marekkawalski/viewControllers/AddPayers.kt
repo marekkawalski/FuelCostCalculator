@@ -1,5 +1,6 @@
 package com.marekkawalski.viewControllers
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -21,7 +22,9 @@ import otherControllers.SettingsController
 class AddPayers : AppCompatActivity() {
     private var payment: Double? = null
     private var listOfPayersViews = ArrayList<TableRow>()
+    private var currentSum = 0.0
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,6 +48,7 @@ class AddPayers : AppCompatActivity() {
         val payerPriceInput = findViewById<TextInputEditText>(R.id.payerPriceInput)
         val payerPriceInputLayout = findViewById<TextInputLayout>(R.id.payerPriceInputLayout)
         val tableOfPayers = findViewById<TableLayout>(R.id.tableOfCostsLayout)
+        val paymentTextView = findViewById<TextView>(R.id.paymentTextView)
         var payerId = 0
         var carId = 0
 
@@ -173,6 +177,9 @@ class AddPayers : AppCompatActivity() {
             paymentsTextView.gravity = Gravity.CENTER
             paymentsTextView.width = ViewGroup.LayoutParams.WRAP_CONTENT
             paymentsTextView.text = payment.toString()
+            currentSum += payment ?: 0.0
+            paymentTextView.text =
+                resources.getString(R.string.payment) + " (" + currentSum.toString() + ")"
             listOfPayersViews.add(tableRow)
 
             tableRow.addView(payerNameView)
@@ -181,13 +188,21 @@ class AddPayers : AppCompatActivity() {
         }
 
         deleteLastButton.setOnClickListener {
-            if (listOfPassengers?.isNotEmpty() == true && listOfPayersViews.isNotEmpty()) {
+            if (listOfPassengers?.isNotEmpty() == true && listOfPassengers[payerId]?.listOfPayments?.isNotEmpty() == true) {
+                currentSum -= listOfPassengers[payerId]?.listOfPayments?.last() ?: 0.0
                 listOfPassengers[payerId]?.listOfPayments?.removeLast()
+                paymentTextView.text =
+                    resources.getString(R.string.payment) + " (" + currentSum.toString() + ")"
 
-                tableOfPayers.removeView(listOfPayersViews.last())
-                listOfPayersViews.removeLast()
-
-
+                if (listOfPayersViews.isNotEmpty()) {
+                    tableOfPayers.removeView(listOfPayersViews.last())
+                    listOfPayersViews.removeLast()
+                    Toast.makeText(
+                        applicationContext,
+                        resources.getString(R.string.paymentRemoved),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             } else {
                 Toast.makeText(
                     applicationContext,
@@ -195,11 +210,17 @@ class AddPayers : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
         }
 
         buttonNext.setOnClickListener {
             var totalPassengersFuelCost = 0.0
             var actualTotalFuelCost = 0.0
+            if (listOfPassengers != null) {
+                for (person in listOfPassengers) {
+                    person.howMuchPaid = 0.0
+                }
+            }
             if (listOfPassengers != null && listOfCars != null) {
                 for (person in listOfPassengers) {
                     for (payment in person.listOfPayments) {
@@ -234,5 +255,4 @@ class AddPayers : AppCompatActivity() {
             finish()
         }
     }
-    //@todo kiedy powrót z results do payment, problem z przyjsciem dalej
 }

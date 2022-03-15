@@ -17,6 +17,11 @@ import otherControllers.SettingsController
 import kotlin.math.roundToInt
 
 class Results : AppCompatActivity() {
+
+    private var listOfPayers = ArrayList<Person>()
+    private var listOfPeopleToBePaid = ArrayList<Person>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,8 +34,6 @@ class Results : AppCompatActivity() {
         val listOfPassengers = intent.getParcelableArrayListExtra<Person>("listOfPassengers")
         val tableOfPassengers = findViewById<TableLayout>(R.id.tableOfCostsLayout)
         val buttonPrevious = findViewById<ImageButton>(R.id.buttonPrevious)
-        val mapOfPayments = mutableMapOf<Int, Double>()
-        val mapOfDebts = mutableMapOf<Int, Double>()
 
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigationView)
@@ -53,45 +56,106 @@ class Results : AppCompatActivity() {
 
         if (listOfPassengers != null) {
             for (person in listOfPassengers) {
-                mapOfDebts[person.id] = person.costOfFuel
-                mapOfPayments[person.id] = person.howMuchPaid
+                person.howMuchPaid -= person.costOfFuel
+                when {
+                    person.howMuchPaid > 0.0 -> {
+                        listOfPeopleToBePaid.add(person)
+                    }
+                    person.howMuchPaid < 0.0 -> {
+                        listOfPayers.add(person)
+                    }
+                }
             }
-            val sortedMapOfDebts = mapOfDebts.toList().sortedBy { (_, value) -> value }.toMap()
-            val sortedMapOfPayments =
-                mapOfPayments.toList().sortedBy { (_, value) -> value }.toMap()
+
+            listOfPayers.sortBy { passenger -> passenger.howMuchPaid }
+            listOfPeopleToBePaid.sortBy { passenger -> passenger.howMuchPaid }
+            listOfPeopleToBePaid.reverse()
+
+            Log.i("sorted", "------------listOfPayers------------\n")
+            for (person in listOfPayers) {
+                Log.i("sorted", person.name + " " + person.howMuchPaid.toString() + "\n")
+            }
+            Log.i("sorted", "------------listOfPeopleToBePaid------------\n")
+            for (person in listOfPeopleToBePaid) {
+                Log.i("sorted", person.name + " " + person.howMuchPaid.toString() + "\n")
+            }
+
+            Log.i("sorted", "------------payers------------\n")
+            whoPassengerShouldPay()
+
 
             for (person in listOfPassengers) {
-                val passengerNameView = TextView(this)
-                val howMuchTextView = TextView(this)
-                val wireToTextView = TextView(this)
-                val tableRow = TableRow(this)
+                for ((key, value) in person.mapOfPayments) {
+                    val passengerNameView = TextView(this)
+                    val howMuchTextView = TextView(this)
+                    val wireToTextView = TextView(this)
+                    val tableRow = TableRow(this)
 
-                passengerNameView.gravity = Gravity.CENTER
-                passengerNameView.width = WRAP_CONTENT
-                passengerNameView.textSize = 16F
+                    passengerNameView.gravity = Gravity.CENTER
+                    passengerNameView.width = WRAP_CONTENT
+                    passengerNameView.textSize = 16F
 
-                howMuchTextView.gravity = Gravity.CENTER
-                howMuchTextView.width = WRAP_CONTENT
-                howMuchTextView.textSize = 16F
+                    howMuchTextView.gravity = Gravity.CENTER
+                    howMuchTextView.width = WRAP_CONTENT
+                    howMuchTextView.textSize = 16F
 
-                wireToTextView.gravity = Gravity.CENTER
-                wireToTextView.width = WRAP_CONTENT
-                wireToTextView.textSize = 16F
+                    wireToTextView.gravity = Gravity.CENTER
+                    wireToTextView.width = WRAP_CONTENT
+                    wireToTextView.textSize = 16F
 
-                passengerNameView.text = person.name
-                howMuchTextView.text = ((person.costOfFuel * 100.0).roundToInt() / 100.0).toString()
+                    passengerNameView.text = person.name
+                    //howMuchTextView.text = ((person.costOfFuel * 100.0).roundToInt() / 100.0).toString()
+                    wireToTextView.text = key.name
+                    howMuchTextView.text = ((value * 100.0).roundToInt() / 100.0).toString()
 
-                tableRow.addView(passengerNameView)
-                tableRow.addView(wireToTextView)
-                tableRow.addView(howMuchTextView)
-                tableOfPassengers.addView(tableRow)
-                Log.i("sorttest", person.howMuchPaid.toString())
+                    tableRow.addView(passengerNameView)
+                    tableRow.addView(wireToTextView)
+                    tableRow.addView(howMuchTextView)
+                    tableOfPassengers.addView(tableRow)
 
+                }
             }
         }
         buttonPrevious.setOnClickListener {
             finish()
         }
 
+    }
+
+    private fun whoPassengerShouldPay() {
+
+        for (payer in listOfPayers) {
+            payer.howMuchPaid *= -1
+        }
+        var tempAmount: Double
+        var i = 0
+        for (personToBePaid in listOfPeopleToBePaid) {
+            tempAmount = personToBePaid.howMuchPaid
+            i = 0
+            while (tempAmount != 0.0 && i != listOfPayers.size) {
+
+                if (listOfPayers[i].howMuchPaid != 0.0) {
+
+                    if (tempAmount >= listOfPayers[i].howMuchPaid) {
+                        tempAmount -= listOfPayers[i].howMuchPaid
+                        listOfPayers[i].mapOfPayments[personToBePaid] = listOfPayers[i].howMuchPaid
+                        listOfPayers[i].howMuchPaid = 0.0
+
+                    } else {
+                        listOfPayers[i].howMuchPaid -= tempAmount
+                        listOfPayers[i].mapOfPayments[personToBePaid] = tempAmount
+                        tempAmount = 0.0
+                    }
+
+                    Log.i(
+                        "sorted",
+                        "personToBePaid: " + personToBePaid.name + " who pays: " + listOfPayers[i].name + " amount: " +
+                                listOfPayers[i].mapOfPayments[personToBePaid].toString() + "\n"
+                    )
+                }
+                i++
+
+            }
+        }
     }
 }
