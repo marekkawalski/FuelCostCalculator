@@ -4,7 +4,7 @@
 
     <PreferenceCategory android:title="@string/appSettings">
         <ListPreference
-            app:defaultValue="true"
+            app:defaultValue="1"
             app:entries="@array/dark_mode_entries"
             app:entryValues="@array/dark_mode_values"
             app:icon="@drawable/ic_baseline_dark_mode_24"

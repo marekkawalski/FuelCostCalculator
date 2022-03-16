@@ -84,7 +84,8 @@
     <!--Strings for results activity-->
     <string name="table_of_costs">Table of costs</string>
     <string name="cost">how much</string>
-    <string name="whoToWireMoney">wire to</string>
+    <string name="whoToWireMoney">to whom</string>
+    <string name="who">Who</string>
 
     <!--Strings for settings activity-->
     <string name="appTheme">App theme</string>

@@ -3,11 +3,36 @@ package model
 import android.os.Parcel
 import android.os.Parcelable
 
+/**
+ * Distance
+ * Class represents particular distance covered during a trip (for instance a distance to London from Paris)
+ * @constructor Create empty Distance
+ * @author Marek Kawalski
+ */
 class Distance : Parcelable {
+    /**
+     *@property distanceName name of the distance for instance: "to Paris" or "back to London"
+     */
     var distanceName: String = ""
+
+    /**
+     *@property distance distance length for instance: 50km or 100 miles
+     */
     var distance: Double = 0.0
+
+    /**
+     *@property passengersCount count of passengers present on particular distance
+     */
     var passengersCount: Int = 0
+
+    /**
+     *@property listOfCars list of cars that covered that distance for instance two cars covered a distance from London toParis, so the list contains two cars
+     */
     var listOfCars = ArrayList<Car?>()
+
+    /**
+     *@property id car Id, used so as not to compare car names
+     */
     var id: Int
 
 

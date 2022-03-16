@@ -14,7 +14,11 @@ import com.marekkawalski.fuelcostcalculator.R
 import model.Car
 import otherControllers.SettingsController
 
-
+/**
+ * Main activity
+ * Class is apps main activity. On this screen, user can add cars that took part in a trip
+ * @author Marek Kawalski
+ */
 class MainActivity : AppCompatActivity() {
     private var carMake: String? = null
     private var totalCost: Double? = null
@@ -213,6 +217,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Handle dont know cost
+     * Method changes visibility of average fuel consumption and price per fuel liter input layouts
+     */
     private fun handleDontKnowCost() {
         val averageConsumptionLayout =
             findViewById<TextInputLayout>(R.id.averageConsumptionInputLayout)
@@ -225,6 +233,7 @@ class MainActivity : AppCompatActivity() {
             pricePerLiterLayout.visibility = View.GONE
         }
     }
+
 }
 
 

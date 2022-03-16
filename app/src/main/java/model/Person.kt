@@ -3,14 +3,50 @@ package model
 import android.os.Parcel
 import android.os.Parcelable
 
+/**
+ * Person
+ * Class represents a passenger who took part in a trip
+ * @constructor Create empty Person
+ */
 class Person : Parcelable {
+    /**
+     *@property name name of passenger
+     */
     var name: String = ""
+
+    /**
+     *@property id passenger id
+     */
     var id: Int
+
+    /**
+     *@property coveredDistance total covered distance by a particular person
+     */
     var coveredDistance: Double = 0.0
+
+    /**
+     *@property costOfFuel what passenger is to pay for their trip
+     */
     var costOfFuel: Double = 0.0
+
+    /**
+     * @property listOfPassengersSelectedDistances list of distances in which a passenger took part
+     */
     var listOfPassengersSelectedDistances = ArrayList<Distance>()
+
+    /**
+     * @property howMuchPaid how much a passenger paid minus costOfFuel, can be a negative number
+     */
     var howMuchPaid: Double = 0.0
+
+    /**
+     *@property listOfPayments list of payments made by a particular passenger
+     */
     var listOfPayments = ArrayList<Double>()
+
+    /**
+     *@property mapOfPayments map of payments to be made by particular passengers, it contains who to wire money to and how much to wire
+     */
     var mapOfPayments = mutableMapOf<Person, Double>()
 
     constructor(name: String, id: Int) {

@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.marekkawalski.fuelcostcalculator.R
+import model.FuelCostCalculator
 import model.Person
 import otherControllers.SettingsController
 import kotlin.math.roundToInt
@@ -81,10 +82,41 @@ class Results : AppCompatActivity() {
             }
 
             Log.i("sorted", "------------payers------------\n")
-            whoPassengerShouldPay()
 
+            val fuelCostCalculator = FuelCostCalculator()
+            fuelCostCalculator.whoPassengerShouldPay(listOfPayers, listOfPeopleToBePaid)
 
             for (person in listOfPassengers) {
+                if (person.mapOfPayments.isEmpty()) {
+                    val passengerNameView = TextView(this)
+                    val howMuchTextView = TextView(this)
+                    val wireToTextView = TextView(this)
+                    val tableRow = TableRow(this)
+
+                    passengerNameView.gravity = Gravity.CENTER
+                    passengerNameView.width = WRAP_CONTENT
+                    passengerNameView.textSize = 16F
+
+                    howMuchTextView.gravity = Gravity.CENTER
+                    howMuchTextView.width = WRAP_CONTENT
+                    howMuchTextView.textSize = 16F
+
+                    wireToTextView.gravity = Gravity.CENTER
+                    wireToTextView.width = WRAP_CONTENT
+                    wireToTextView.textSize = 16F
+
+                    passengerNameView.text = person.name
+                    wireToTextView.text = "-"
+                    howMuchTextView.text =
+                        ((person.howMuchPaid * 100.0).roundToInt() / 100.0).toString()
+
+                    tableRow.addView(passengerNameView)
+                    tableRow.addView(wireToTextView)
+                    tableRow.addView(howMuchTextView)
+                    tableOfPassengers.addView(tableRow)
+
+
+                }
                 for ((key, value) in person.mapOfPayments) {
                     val passengerNameView = TextView(this)
                     val howMuchTextView = TextView(this)
@@ -104,7 +136,6 @@ class Results : AppCompatActivity() {
                     wireToTextView.textSize = 16F
 
                     passengerNameView.text = person.name
-                    //howMuchTextView.text = ((person.costOfFuel * 100.0).roundToInt() / 100.0).toString()
                     wireToTextView.text = key.name
                     howMuchTextView.text = ((value * 100.0).roundToInt() / 100.0).toString()
 
@@ -112,7 +143,6 @@ class Results : AppCompatActivity() {
                     tableRow.addView(wireToTextView)
                     tableRow.addView(howMuchTextView)
                     tableOfPassengers.addView(tableRow)
-
                 }
             }
         }
@@ -122,40 +152,4 @@ class Results : AppCompatActivity() {
 
     }
 
-    private fun whoPassengerShouldPay() {
-
-        for (payer in listOfPayers) {
-            payer.howMuchPaid *= -1
-        }
-        var tempAmount: Double
-        var i = 0
-        for (personToBePaid in listOfPeopleToBePaid) {
-            tempAmount = personToBePaid.howMuchPaid
-            i = 0
-            while (tempAmount != 0.0 && i != listOfPayers.size) {
-
-                if (listOfPayers[i].howMuchPaid != 0.0) {
-
-                    if (tempAmount >= listOfPayers[i].howMuchPaid) {
-                        tempAmount -= listOfPayers[i].howMuchPaid
-                        listOfPayers[i].mapOfPayments[personToBePaid] = listOfPayers[i].howMuchPaid
-                        listOfPayers[i].howMuchPaid = 0.0
-
-                    } else {
-                        listOfPayers[i].howMuchPaid -= tempAmount
-                        listOfPayers[i].mapOfPayments[personToBePaid] = tempAmount
-                        tempAmount = 0.0
-                    }
-
-                    Log.i(
-                        "sorted",
-                        "personToBePaid: " + personToBePaid.name + " who pays: " + listOfPayers[i].name + " amount: " +
-                                listOfPayers[i].mapOfPayments[personToBePaid].toString() + "\n"
-                    )
-                }
-                i++
-
-            }
-        }
-    }
 }

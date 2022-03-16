@@ -38,7 +38,7 @@
     <string name="first_add_at_least_one_passenger">Najpierw dodaj przynajmniej jednego pasażera!</string>
     <string name="error_when_calculating_fuel_cost">Błąd przy obliczaniu kosztu paliwa</string>
     <string name="table_of_costs">Tabela kosztów</string>
-    <string name="cost">Koszt</string>
+    <string name="cost">Ile</string>
     <string name="newCar">nowe auto</string>
     <string name="settings">ustawienia</string>
     <string name="appTheme">Motyw aplikacji</string>
@@ -65,4 +65,16 @@
     <string name="addAtLeastOneCar">Dodaj co najmniej jeden samochód!</string>
     <string name="chooseCarsFor">Wybierz auta dla</string>
     <string name="carList">Auta</string>
+    <string name="fuelPayments">Płatności za paliwo</string>
+    <string name="howMuchYouPaid">Ile zapłaciłeś?</string>
+    <string name="addPayment">+ Dodaj płatność</string>
+    <string name="payerName">Imię płatnika</string>
+    <string name="payment">Opłaty</string>
+    <string name="choosePayer">Kto płacił?</string>
+    <string name="forWhatCar">Za który samochód?</string>
+    <string name="paymentRemoved">Opłata usunięta</string>
+    <string name="fuelCostsAreNotEqual">Całkowity koszt paliwa nie jest równy sumie opłat!</string>
+    <string name="whoToWireMoney">komu</string>
+    <string name="providePayment">Dodaj opłatę</string>
+    <string name="who">kto</string>
 </resources>
