@@ -32,6 +32,7 @@
     <string name="car_removed">Car removed!</string>
     <string name="notSetYet">Not calculated yet!</string>
     <string name="addAtLeastOneCar">Add at least one car!</string>
+    <string name="numberMustBePositive">Number must be higher than zero!</string>
 
 
     <!--Strings for add distances activity-->
@@ -74,6 +75,8 @@
     <string name="payment">Payments</string>
     <string name="choosePayer">Who paid?</string>
     <string name="forWhatCar">For what car?</string>
+    <string name="price">price:</string>
+    <string name="partialPayment">partial/multiple payments:</string>
 
     <!--Toast messages and communication with user on payments activity-->
     <string name="providePayment">Provide payment</string>
