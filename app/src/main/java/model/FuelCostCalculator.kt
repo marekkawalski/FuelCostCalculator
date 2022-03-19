@@ -1,7 +1,5 @@
 package model
 
-import android.util.Log
-
 /**
  * Fuel cost calculator
  * Class which handles all calculations
@@ -23,11 +21,10 @@ class FuelCostCalculator(
      */
     private fun calculateTotalDistance(): Double {
         var totalDistance = 0.0
-        for (distance in listOfDistances ?: return 0.0) {
-            if (distance != null) {
-                for (j in distance.listOfCars) {
-                    totalDistance += distance.distance
-                }
+
+        listOfDistances?.forEach { distance ->
+            distance?.listOfCars?.forEach { _ ->
+                totalDistance += distance.distance
             }
         }
         return totalDistance
@@ -53,8 +50,8 @@ class FuelCostCalculator(
      */
     fun calculatePassengerTotalDistance(person: Person): Double {
         var coveredDistance = 0.0
-        for (i in person.listOfPassengersSelectedDistances) {
-            coveredDistance += i.distance
+        person.listOfPassengersSelectedDistances.forEach { distance ->
+            coveredDistance += distance.distance
         }
         return coveredDistance
     }
@@ -69,6 +66,7 @@ class FuelCostCalculator(
         var totalPersonCost = 0.0
         val totalDistance = calculateTotalDistance()
         var totalFuelCost = 0.0
+
         listOfCars?.forEach { car ->
             totalFuelCost += car?.totalFuelCost ?: 0.0
         }
@@ -113,12 +111,6 @@ class FuelCostCalculator(
                         listOfPayers[i].mapOfPayments[personToBePaid] = tempAmount
                         tempAmount = 0.0
                     }
-
-                    Log.i(
-                        "sorted",
-                        "personToBePaid: " + personToBePaid.name + " who pays: " + listOfPayers[i].name + " amount: " +
-                                listOfPayers[i].mapOfPayments[personToBePaid].toString() + "\n"
-                    )
                 }
                 i++
             }

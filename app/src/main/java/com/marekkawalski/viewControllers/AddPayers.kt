@@ -73,36 +73,15 @@ class AddPayers : AppCompatActivity() {
         }
 
         val listOfCarsArray = ArrayList<String>()
-        if (listOfCars != null) {
-            listOfCars?.forEach { car ->
-                listOfCarsArray.add(car.carName + ", " + resources.getString(R.string.price) + " " + car.totalFuelCost)
-            }
-            listOfCarsArray.add(resources.getString(R.string.partialPayment))
-        }
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            listOfCarsArray
 
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            carChooserSpinner?.adapter = adapter
+        listOfCars?.forEach { car ->
+            listOfCarsArray.add(car.carName + ", " + resources.getString(R.string.price) + " " + car.totalFuelCost)
         }
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            listOfPassengersArray
+        listOfCarsArray.add(resources.getString(R.string.partialPayment))
 
-        ).also { adapter ->
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            // Apply the adapter to the spinner
-            payerSpinner?.adapter = adapter
-        }
+        createAnArrayAdapter(carChooserSpinner, listOfCarsArray)
+
+        createAnArrayAdapter(payerSpinner, listOfPassengersArray)
 
         payerSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -272,12 +251,12 @@ class AddPayers : AppCompatActivity() {
     private fun handleMovingToNextActivity() {
         var totalPassengersFuelCost = 0.0
         var actualTotalFuelCost = 0.0
-        if (listOfPassengers != null) {
-            listOfPassengers?.forEach { person ->
-                person.howMuchPaid = 0.0
-            }
+
+        listOfPassengers?.forEach { person ->
+            person.howMuchPaid = 0.0
         }
         if (listOfPassengers != null && listOfCars != null) {
+
             listOfPassengers?.forEach { person ->
                 person.listOfPayments.forEach { payment ->
                     person.howMuchPaid += payment
@@ -289,6 +268,7 @@ class AddPayers : AppCompatActivity() {
             }
 
             if (actualTotalFuelCost != totalPassengersFuelCost) {
+
                 listOfPassengers?.forEach { person ->
                     person.howMuchPaid = 0.0
                 }
@@ -303,6 +283,21 @@ class AddPayers : AppCompatActivity() {
                 intent.putExtra("listOfPassengers", listOfPassengers)
                 startActivity(intent)
             }
+        }
+    }
+
+    private fun createAnArrayAdapter(spinner: Spinner?, listOfChoice: ArrayList<String>) {
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            listOfChoice
+
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner?.adapter = adapter
         }
     }
 }

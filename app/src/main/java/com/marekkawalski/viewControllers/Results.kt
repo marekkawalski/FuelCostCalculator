@@ -14,6 +14,7 @@ import com.marekkawalski.fuelcostcalculator.R
 import model.FuelCostCalculator
 import model.Person
 import otherControllers.SettingsController
+import java.util.*
 import kotlin.math.roundToInt
 
 /**
@@ -27,7 +28,6 @@ class Results : AppCompatActivity() {
     private var listOfPeopleToBePaid = ArrayList<Person>()
     private var tableOfPassengers: TableLayout? = null
     private var listOfPassengers: ArrayList<Person>? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,12 +64,15 @@ class Results : AppCompatActivity() {
         val fuelCostCalculator = FuelCostCalculator()
         fuelCostCalculator.whoPassengerShouldPay(listOfPayers, listOfPeopleToBePaid)
 
+
+        listOfPassengers?.sortBy { person -> person.name.uppercase(Locale.getDefault()) }
+
         listOfPassengers?.forEach { person ->
             if (person.mapOfPayments.isEmpty()) {
                 addPaymentRowsToResultsTable(person, "-", "-")
                 return@forEach
             }
-            for ((key, value) in person.mapOfPayments) {
+            person.mapOfPayments.forEach { (key, value) ->
                 addPaymentRowsToResultsTable(
                     person,
                     key.name,
@@ -78,7 +81,9 @@ class Results : AppCompatActivity() {
             }
         }
         buttonPrevious.setOnClickListener {
+
             finish()
+
         }
 
     }
@@ -119,6 +124,7 @@ class Results : AppCompatActivity() {
         tableRow.addView(passengerNameView)
         tableRow.addView(wireToTextView)
         tableRow.addView(howMuchTextView)
+
         tableOfPassengers?.addView(tableRow)
     }
 
