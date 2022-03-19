@@ -123,6 +123,15 @@ class AddDistances : AppCompatActivity() {
             return
         }
 
+        if (distance ?: 0.0 <= 0.0) {
+            Toast.makeText(
+                applicationContext,
+                resources.getString(R.string.numberMustBePositive),
+                Toast.LENGTH_SHORT
+            )
+                .show()
+            return
+        }
         //create new distance
         val distanceInstance = Distance(distanceName as String, distance ?: 0.0, ++distanceIndex)
         //add this distance to list of all distances

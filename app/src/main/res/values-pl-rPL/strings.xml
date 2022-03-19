@@ -77,4 +77,7 @@
     <string name="whoToWireMoney">komu</string>
     <string name="providePayment">Dodaj opłatę</string>
     <string name="who">kto</string>
+    <string name="numberMustBePositive">Liczba musi być dodatnia!</string>
+    <string name="partialPayment">częściowa opłata/ wiele opłat</string>
+    <string name="price">cena:</string>
 </resources>

@@ -138,7 +138,6 @@ class AddPayers : AppCompatActivity() {
         addPaymentButton?.setOnClickListener {
 
             handleAddingPayment()
-            addPaymentToUi()
         }
 
         deleteLastButton?.setOnClickListener {
@@ -177,11 +176,21 @@ class AddPayers : AppCompatActivity() {
                 ).show()
                 return
             }
+            if (payment ?: 0.0 <= 0.0) {
+                Toast.makeText(
+                    applicationContext,
+                    resources.getString(R.string.numberMustBePositive),
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+                return
+            }
             listOfPassengers?.get(payerId)?.listOfPayments?.add(
                 payment ?: return
             )
 
         }
+        addPaymentToUi()
     }
 
     /**
