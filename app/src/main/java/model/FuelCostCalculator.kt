@@ -10,8 +10,8 @@ package model
  * @author Marek Kawalski
  */
 class FuelCostCalculator(
-    private var listOfDistances: ArrayList<Distance?>? = null,
-    private var listOfCars: ArrayList<Car?>? = null
+    var listOfDistances: ArrayList<Distance?>? = null,
+    var listOfCars: ArrayList<Car?>? = null
 ) {
 
     /**
@@ -37,9 +37,13 @@ class FuelCostCalculator(
      * @param car car which fuel cost is to be calculated
      * @return cost of fuel
      */
-    fun calculateTotalCostOfFuel(car: Car?): Double {
-        return (car?.averageFuelConsumptions ?: 0.0) * (car?.costOfFuelLiter
-            ?: 0.0) * calculateTotalDistance() / 100
+    fun calculateTotalCostOfFuel() {
+        listOfCars?.forEach { car ->
+            if (car?.totalFuelCost == 0.0) {
+                car.totalFuelCost =
+                    car.averageFuelConsumptions * car.costOfFuelLiter * calculateTotalDistance() / 100
+            }
+        }
     }
 
     /**
@@ -103,7 +107,8 @@ class FuelCostCalculator(
 
                     if (tempAmount >= listOfPayers[i].howMuchPaid) {
                         tempAmount -= listOfPayers[i].howMuchPaid
-                        listOfPayers[i].mapOfPayments[personToBePaid] = listOfPayers[i].howMuchPaid
+                        listOfPayers[i].mapOfPayments[personToBePaid] =
+                            listOfPayers[i].howMuchPaid
                         listOfPayers[i].howMuchPaid = 0.0
 
                     } else {

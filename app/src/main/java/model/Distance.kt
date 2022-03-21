@@ -40,7 +40,6 @@ class Distance : Parcelable {
         this.distanceName = distanceName
         this.distance = distance
         this.id = id
-
     }
 
     override fun describeContents(): Int {

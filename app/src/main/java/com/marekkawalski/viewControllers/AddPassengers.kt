@@ -306,12 +306,9 @@ class AddPassengers : AppCompatActivity() {
             //check if model class is not null
             //model class can be null if list of distances of list of cars is null
             if (fuelCostCalculator != null) {
+
                 //if cost of fuel haven't been then calculate it
-                listOfCars?.forEach { car ->
-                    if (car?.totalFuelCost == 0.0) {
-                        car.totalFuelCost = fuelCostCalculator.calculateTotalCostOfFuel(car)
-                    }
-                }
+                fuelCostCalculator.calculateTotalCostOfFuel()
                 //calculate total distance covered by each passenger
                 //with covered distance calculated calculate total cost of fuel
                 for (person in listOfPassengers) {
