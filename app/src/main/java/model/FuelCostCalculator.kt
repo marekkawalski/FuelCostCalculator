@@ -34,8 +34,6 @@ class FuelCostCalculator(
      * Calculate total cost of fuel
      * Method calculates car total fuel cost based on car average consumption, cost of fuel liter and total distance
      * covered by the car
-     * @param car car which fuel cost is to be calculated
-     * @return cost of fuel
      */
     fun calculateTotalCostOfFuel() {
         listOfCars?.forEach { car ->
@@ -76,6 +74,11 @@ class FuelCostCalculator(
         }
 
         for (distance in person.listOfPassengersSelectedDistances) {
+            if (totalDistance == 0.0 || distance.passengersCount == 0) {
+                throw FuelCostCalculatorException(
+                    "Division by zero is impossible!!"
+                )
+            }
             totalPersonCost += ((totalFuelCost * distance.distance * distance.listOfCars.count()) / (totalDistance * distance.passengersCount
                     ))
         }

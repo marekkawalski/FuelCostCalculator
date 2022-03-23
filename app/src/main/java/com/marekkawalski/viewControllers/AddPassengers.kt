@@ -11,10 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
 import com.marekkawalski.fuelcostcalculator.R
-import model.Car
-import model.Distance
-import model.FuelCostCalculator
-import model.Person
+import model.*
 import otherControllers.SettingsController
 
 /**
@@ -314,7 +311,15 @@ class AddPassengers : AppCompatActivity() {
                 for (person in listOfPassengers) {
                     person.coveredDistance =
                         fuelCostCalculator.calculatePassengerTotalDistance(person)
-                    person.costOfFuel = fuelCostCalculator.calculatePassengerTotalCost(person)
+                    try {
+                        person.costOfFuel = fuelCostCalculator.calculatePassengerTotalCost(person)
+                    } catch (ex: FuelCostCalculatorException) {
+                        Toast.makeText(
+                            applicationContext,
+                            ex.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             } else {
                 Toast.makeText(

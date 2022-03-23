@@ -46,6 +46,14 @@ class Car(
         this.averageFuelConsumptions = averageFuelConsumptions
     }
 
+    constructor(
+        carName: String,
+        totalFuelCost: Double
+    ) : this() {
+        this.carName = carName
+        this.totalFuelCost = totalFuelCost
+    }
+
     override fun describeContents(): Int {
         return 0
     }
