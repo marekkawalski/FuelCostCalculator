@@ -10,33 +10,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.FuelCostCalculator">
         <activity
-            android:name="com.marekkawalski.viewControllers.AddPayers"
+            android:name="com.marekkawalski.controllers.AddPayers"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.marekkawalski.viewControllers.SettingsActivity"
+            android:name="com.marekkawalski.controllers.SettingsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.marekkawalski.viewControllers.Results"
+            android:name="com.marekkawalski.controllers.Results"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.marekkawalski.viewControllers.AddDistances"
+            android:name="com.marekkawalski.controllers.AddDistances"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.marekkawalski.viewControllers.AddPassengers"
+            android:name="com.marekkawalski.controllers.AddPassengers"
             android:exported="false"
             android:screenOrientation="portrait"
 
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.marekkawalski.viewControllers.MainActivity"
+            android:name="com.marekkawalski.controllers.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">

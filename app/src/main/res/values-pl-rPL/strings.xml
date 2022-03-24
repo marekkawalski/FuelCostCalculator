@@ -80,4 +80,5 @@
     <string name="numberMustBePositive">Liczba musi być dodatnia!</string>
     <string name="partialPayment">częściowa opłata/ wiele opłat</string>
     <string name="price">cena:</string>
+    <string name="nothing">nic</string>
 </resources>

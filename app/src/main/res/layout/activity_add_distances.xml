@@ -5,7 +5,7 @@
     android:id="@+id/constraintlayoutDistances"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.marekkawalski.viewControllers.AddDistances">
+    tools:context="com.marekkawalski.controllers.AddDistances">
 
     <Button
         android:id="@+id/addPassengerButton"

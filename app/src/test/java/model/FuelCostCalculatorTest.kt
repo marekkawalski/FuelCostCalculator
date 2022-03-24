@@ -2,6 +2,8 @@ package model
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.fail
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.Arguments.arguments
@@ -12,6 +14,7 @@ import kotlin.math.roundToInt
 /**
  * Class where tests on model are performed.
  * @author Marek Kawalski
+ * @version 1.2
  */
 class FuelCostCalculatorTest {
     /**
@@ -30,7 +33,7 @@ class FuelCostCalculatorTest {
     private lateinit var fuelCostCalculator: FuelCostCalculator
 
     /**
-     * Set up
+     * Method sets new model as well as its properties for each test.
      *
      */
     @BeforeEach
@@ -41,11 +44,11 @@ class FuelCostCalculatorTest {
     }
 
     /**
-     * Test calculating total cost of fuel based on average fuel consumption
+     * Method tests calculating total cost of fuel based on average fuel consumption
      *
-     * @param listOfCars
-     * @param listOfDistances
-     * @param arrayOfExpectedOutput
+     * @param listOfCars list of all cars
+     * @param listOfDistances list of all distance
+     * @param arrayOfExpectedOutput array of expected output
      */
     @ParameterizedTest
     @MethodSource("listOfCars and listOfDistances provider")
@@ -77,7 +80,13 @@ class FuelCostCalculatorTest {
         }
     }
 
-
+    /**
+     * Method tests calculating total distance covered by a passenger
+     *
+     * @param person whose distance is to be calculated
+     * @param listOfPassengersSelectedDistances list of distances on which the passenger was present
+     * @param expectedOutput expected output
+     */
     @ParameterizedTest
     @MethodSource("passenger and distances provider")
     fun `test calculating total distance covered by a passenger`(
@@ -94,27 +103,24 @@ class FuelCostCalculatorTest {
         )
     }
 
+    /**
+     * Method tests calculating passenger total fuel cost
+     *
+     * @param person passenger for whom cost is to be calculated
+     * @param listOfDistances list of all distances
+     * @param listOfCars list of all cars
+     * @param expectedOutput expected output
+     */
     @ParameterizedTest
     @MethodSource("passenger, cars and listOfPassengersSelectedDistances provider")
     fun `test calculating passenger total fuel cost`(
         person: Person,
-        listOfPassengersSelectedDistances: ArrayList<Distance>,
         listOfDistances: ArrayList<Distance?>,
         listOfCars: ArrayList<Car?>,
         expectedOutput: Double
     ) {
-        person.listOfPassengersSelectedDistances = listOfPassengersSelectedDistances
         fuelCostCalculator.listOfCars = listOfCars
         fuelCostCalculator.listOfDistances = listOfDistances
-
-        for ((i, distance) in listOfDistances.withIndex()) {
-            for (car in listOfCars) {
-                if (i % 2 == 0) {
-                    distance?.listOfCars?.add(car)
-                    distance?.passengersCount = i + 1
-                }
-            }
-        }
 
         val output = fuelCostCalculator.calculatePassengerTotalCost(person)
         assertEquals(
@@ -124,6 +130,55 @@ class FuelCostCalculatorTest {
         )
     }
 
+    /**
+     * Method tests if exception is thrown when trying to divide by zero.
+     *
+     */
+    @Test
+    fun `test of exception when dividing by zero, should throw an exception`() {
+        val person = Person("Marek", 0)
+        person.listOfPassengersSelectedDistances = arrayListOf(
+            Distance(
+                "to Warsaw", 100.00, 0, arrayListOf(
+                    Car("Mercedes", 8.6, 8.30),
+                ), 0
+            )
+        )
+        try {
+            fuelCostCalculator.calculatePassengerTotalCost(person)
+            fail("An exception should be thrown!")
+        } catch (ex: FuelCostCalculatorException) {
+        }
+    }
+
+    /**
+     * Method tests if exception is thrown when dividing by double value. It should not throw an exception.
+     *
+     */
+    @Test
+    fun `test of exception when dividing by positive value, should not throw an exception`() {
+        val person = Person("Marek", 0)
+        this.fuelCostCalculator.listOfDistances = arrayListOf(
+            Distance(
+                "to Warsaw", 100.00, 10, arrayListOf(
+                    Car("Mercedes", 8.6, 8.30),
+                ), 0
+            )
+        )
+        person.listOfPassengersSelectedDistances = arrayListOf(
+            Distance(
+                "to Warsaw", 100.00, 10, arrayListOf(
+                    Car("Mercedes", 8.6, 8.30),
+                ), 0
+            )
+        )
+        try {
+            fuelCostCalculator.calculatePassengerTotalCost(person)
+        } catch (ex: FuelCostCalculatorException) {
+            fail("An exception should not be thrown!")
+
+        }
+    }
 
     /**
      * Data provider companion object for FuelCostCalculatorTest
@@ -133,7 +188,7 @@ class FuelCostCalculatorTest {
         /**
          * Data provider object for 'test calculating total cost of fuel based on average fuel consumption` method
          *
-         * @return
+         * @return stream of arguments which consist of: list of cars, list of distances, list of answers
          */
         @JvmStatic
         fun `listOfCars and listOfDistances provider`(): Stream<Arguments> {
@@ -186,9 +241,9 @@ class FuelCostCalculatorTest {
         }
 
         /**
-         * Passenger and distances provider
+         * Data provider for calculating total distance covered by a passenger
          *
-         * @return
+         * @return stream of arguments, where each argument consists of: passenger, list of distances, correct value
          */
         @JvmStatic
         fun `passenger and distances provider`(): Stream<Arguments> {
@@ -214,25 +269,86 @@ class FuelCostCalculatorTest {
         }
 
         /**
-         * Passenger, cars and list of passengers selected distances provider
+         * Data provides for method which calculates total cost of fuel for a passenger
          *
-         * @return
+         * @return stream of arguments, where each argument represents: passenger, list of distances,list of cars, a correct answer
          */
         @JvmStatic
         fun `passenger, cars and listOfPassengersSelectedDistances provider`(): Stream<Arguments> {
-            val listOfAllDistances = arrayListOf(Distance("to Warsaw", 100.00, 0))
-            val listOfPasssengerDistances = arrayListOf(Distance("to Warsaw", 100.00, 0))
+            val mercedes = Car("Mercedes", 140.00)
+            val volvo = Car("Volvo", 170.00)
+            val audi = Car("Audi", 180.00)
+            val bmw = Car("BMW", 184.00)
+
+            val distanceToWarsaw = Distance(
+                "to Warsaw", 100.00, 4, arrayListOf(
+                    mercedes,
+                    volvo
+                ), 0
+            )
+            val distanceToLondon = Distance(
+                "to London", 330.00, 5, arrayListOf(
+                    volvo,
+                ), 1
+            )
+            val distanceToParis = Distance(
+                "to Paris", 400.00, 3, arrayListOf(
+                    audi, bmw, mercedes
+                ), 2
+            )
+            val distanceToGlasgow = Distance(
+                "to Glasgow", 500.00, 8, arrayListOf(
+                    bmw, volvo
+                ), 3
+            )
+            val distanceToVienna = Distance(
+                "to Vienna", 440.00, 7, arrayListOf(
+                    bmw
+                ), 4
+            )
+
             return Stream.of(
                 arguments(
-                    Person("Marek", 0),
-                    listOfAllDistances,
-                    listOfAllDistances,
-                    arrayListOf(Car("Mercedes", 100.00)),
-                    100
+                    Person(
+                        "Marek", arrayListOf(
+                            distanceToWarsaw,
+                            distanceToGlasgow,
+                            distanceToVienna
+                        ), 0
+                    ),
+                    arrayListOf(
+                        distanceToWarsaw,
+                        distanceToLondon,
+                        distanceToParis,
+                        distanceToGlasgow,
+                        distanceToVienna
+                    ),
+                    arrayListOf(
+                        mercedes,
+                        volvo,
+                        audi,
+                        bmw
+                    ),
+                    (
+                            (
+                                    ((mercedes.totalFuelCost + volvo.totalFuelCost + audi.totalFuelCost + bmw.totalFuelCost)
+                                            * distanceToWarsaw.distance * distanceToWarsaw.listOfCars.count())
+                                            / (3170.00
+                                            * distanceToWarsaw.passengersCount)
+                                            +
+                                            ((mercedes.totalFuelCost + volvo.totalFuelCost + audi.totalFuelCost + bmw.totalFuelCost)
+                                                    * distanceToGlasgow.distance * distanceToGlasgow.listOfCars.count())
+                                            / (3170.00
+                                            * distanceToGlasgow.passengersCount)
+                                            +
+                                            ((mercedes.totalFuelCost + volvo.totalFuelCost + audi.totalFuelCost + bmw.totalFuelCost)
+                                                    * distanceToVienna.distance * distanceToVienna.listOfCars.count())
+                                            / (3170.00
+                                            * distanceToVienna.passengersCount)
+                                    )
+                            )
                 )
             )
-            //@todo
         }
-
     }
 }

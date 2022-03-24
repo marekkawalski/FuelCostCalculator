@@ -1,4 +1,4 @@
-package com.marekkawalski.viewControllers
+package com.marekkawalski.controllers
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -12,11 +12,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
 import com.marekkawalski.fuelcostcalculator.R
 import model.*
-import otherControllers.SettingsController
 
 /**
  * Add passengers
  * @author Marek Kawalski
+ * @version 1.6
  */
 class AddPassengers : AppCompatActivity() {
 
@@ -39,7 +39,7 @@ class AddPassengers : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val settings = SettingsController()
-        settings.loadSettings(this, resources)
+        settings.loadSettings(this)
 
         setContentView(R.layout.activity_add_passangers)
         title = getString(R.string.app_full_name)
@@ -185,7 +185,8 @@ class AddPassengers : AppCompatActivity() {
                 i.distanceName + " "
             }
         }
-        distancesTextView.text = selectedDistancesString.ifEmpty { "nothing" }
+        distancesTextView.text =
+            selectedDistancesString.ifEmpty { resources.getString(R.string.nothing) }
         selectedDistancesString = ""
     }
 

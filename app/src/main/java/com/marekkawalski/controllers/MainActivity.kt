@@ -1,4 +1,4 @@
-package com.marekkawalski.viewControllers
+package com.marekkawalski.controllers
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,12 +12,12 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.marekkawalski.fuelcostcalculator.R
 import model.Car
-import otherControllers.SettingsController
 
 /**
  * Main activity
  * Class is apps main activity. On this screen, user can add cars that took part in a trip.
  * @author Marek Kawalski
+ * @version 1.4
  */
 class MainActivity : AppCompatActivity() {
     private var carMake: String? = null
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val settings = SettingsController()
-        settings.loadSettings(this, resources)
+        settings.loadSettings(this)
 
         setContentView(R.layout.activity_main)
         title = getString(R.string.app_full_name)

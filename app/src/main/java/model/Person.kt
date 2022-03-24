@@ -4,9 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 
 /**
- * Person
  * Class represents a passenger who took part in a trip
- * @constructor Create empty Person
+ * @author Marek Kawalski
+ * @version 1.3
  */
 class Person : Parcelable {
     /**
@@ -51,6 +51,12 @@ class Person : Parcelable {
 
     constructor(name: String, id: Int) {
         this.name = name
+        this.id = id
+    }
+
+    constructor(name: String, listOfPassengersSelectedDistances: ArrayList<Distance>, id: Int) {
+        this.name = name
+        this.listOfPassengersSelectedDistances = listOfPassengersSelectedDistances
         this.id = id
     }
 

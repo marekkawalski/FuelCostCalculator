@@ -1,4 +1,4 @@
-package com.marekkawalski.viewControllers
+package com.marekkawalski.controllers
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -16,11 +16,11 @@ import com.google.android.material.textfield.TextInputLayout
 import com.marekkawalski.fuelcostcalculator.R
 import model.Car
 import model.Person
-import otherControllers.SettingsController
 
 /**
  * This class allows user to add payments for fuel made during a trip.
  * @author Marek Kawalski
+ * @version 1.3
  *
  */
 class AddPayers : AppCompatActivity() {
@@ -41,7 +41,7 @@ class AddPayers : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val settings = SettingsController()
-        settings.loadSettings(this, resources)
+        settings.loadSettings(this)
 
         setContentView(R.layout.activity_add_payers)
         title = getString(R.string.app_full_name)

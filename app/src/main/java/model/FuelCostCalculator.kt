@@ -1,13 +1,13 @@
 package model
 
 /**
- * Fuel cost calculator
- * Class which handles all calculations
+ * Class which handles all calculations.
  *
  * @property listOfDistances list of distances covered by a passenger
  * @property listOfCars list of cars that took part in the trip
  * @constructor Create empty Fuel cost calculator
  * @author Marek Kawalski
+ * @version 1.2
  */
 class FuelCostCalculator(
     var listOfDistances: ArrayList<Distance?>? = null,
@@ -15,7 +15,7 @@ class FuelCostCalculator(
 ) {
 
     /**
-     * Calculate total distance covered by all cars
+     * Method calculates total distance covered by all cars (sum of their distances).
      *
      * @return total distance covered by all cars
      */
@@ -31,7 +31,6 @@ class FuelCostCalculator(
     }
 
     /**
-     * Calculate total cost of fuel
      * Method calculates car total fuel cost based on car average consumption, cost of fuel liter and total distance
      * covered by the car
      */
@@ -45,7 +44,7 @@ class FuelCostCalculator(
     }
 
     /**
-     * Calculate passenger total distance
+     * Method calculates total distance for a passenger.
      *
      * @param person person whose distance is to be calculated
      * @return total distance covered by given person
@@ -59,7 +58,7 @@ class FuelCostCalculator(
     }
 
     /**
-     * Calculate passenger total cost
+     * Method calculates total cost of fuel for a passenger.
      *
      * @param person person whose total cost is to be calculated
      * @return passenger total cost, how much trip cost them
@@ -76,17 +75,16 @@ class FuelCostCalculator(
         for (distance in person.listOfPassengersSelectedDistances) {
             if (totalDistance == 0.0 || distance.passengersCount == 0) {
                 throw FuelCostCalculatorException(
-                    "Division by zero is impossible!!"
+                    "Total distance or passenger count was zero!!"
                 )
             }
-            totalPersonCost += ((totalFuelCost * distance.distance * distance.listOfCars.count()) / (totalDistance * distance.passengersCount
-                    ))
+            totalPersonCost += ((totalFuelCost * distance.distance * distance.listOfCars.count()) / (totalDistance * distance.passengersCount))
         }
         return totalPersonCost
     }
 
     /**
-     * Who passenger should pay
+     * Method which determines who passengers should pay for trips.
      *
      * @param listOfPayers list of people who owe for a trip (all of their payments minus their total trip cost is negative)
      * @param listOfPeopleToBePaid list of people who are to be repaid (all of their payments minus their total trip cost is positive)

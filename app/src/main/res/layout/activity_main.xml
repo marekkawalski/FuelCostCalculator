@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:isScrollContainer="true"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context="com.marekkawalski.viewControllers.MainActivity">
+    tools:context="com.marekkawalski.controllers.MainActivity">
 
     <TextView
         android:id="@+id/textView"

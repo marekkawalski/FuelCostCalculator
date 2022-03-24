@@ -4,26 +4,26 @@ import android.os.Parcel
 import android.os.Parcelable
 
 /**
- * Car
  * Class represents a car that took part in a trip
  * @author Marek Kawalski
+ * @version 1.3
  */
 class Car(
     /**
-     *@property carName of the car
+     *@property carName name of the car
      */
     var carName: String = ""
 ) : Parcelable {
 
     /**
-     * @property totalFuelCost Total fuel cost
+     * @property totalFuelCost total fuel cost
      */
     var totalFuelCost: Double = 0.0
 
     /**
      * @property totalDistance total distance covered by the car
      */
-    private var totalDistance: Double = 0.0
+    var totalDistance: Double = 0.0
 
     /**
      * @property averageFuelConsumptions car average fuel consumption
@@ -34,7 +34,6 @@ class Car(
      * @property costOfFuelLiter cost of fuel liter (fuel that was used by current car)
      */
     var costOfFuelLiter: Double = 0.0
-
 
     constructor(
         carName: String,
@@ -48,11 +47,12 @@ class Car(
 
     constructor(
         carName: String,
-        totalFuelCost: Double
+        totalFuelCost: Double,
     ) : this() {
         this.carName = carName
         this.totalFuelCost = totalFuelCost
     }
+
 
     override fun describeContents(): Int {
         return 0

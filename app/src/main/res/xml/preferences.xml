@@ -11,14 +11,6 @@
             app:key="appThemeMode"
             app:title="@string/appTheme"
             app:useSimpleSummaryProvider="true" />
-        <ListPreference
-            app:defaultValue="default"
-            app:entries="@array/language_entries"
-            app:entryValues="@array/language_entries_values"
-            app:icon="@drawable/ic_baseline_language_24"
-            app:key="appLanguage"
-            app:title="@string/appLanguage"
-            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/other">
         <Preference

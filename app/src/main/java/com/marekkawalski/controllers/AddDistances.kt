@@ -1,4 +1,4 @@
-package com.marekkawalski.viewControllers
+package com.marekkawalski.controllers
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -13,12 +13,11 @@ import com.google.android.material.textfield.TextInputEditText
 import com.marekkawalski.fuelcostcalculator.R
 import model.Car
 import model.Distance
-import otherControllers.SettingsController
 
 /**
- * Add distances
  * This class allows user to add new distances and select what cars were used on them.
  * @author Marek Kawalski
+ * @version 1.5
  */
 class AddDistances : AppCompatActivity() {
     private var distanceName: String? = null
@@ -42,7 +41,7 @@ class AddDistances : AppCompatActivity() {
         title = getString(R.string.app_full_name)
 
         val settings = SettingsController()
-        settings.loadSettings(this, resources)
+        settings.loadSettings(this)
 
         val addDistancesButton: Button? = findViewById(R.id.addPassengerButton)
         val deleteLastDistanceButton: Button? = findViewById(R.id.deleteLastButton)
@@ -260,7 +259,7 @@ class AddDistances : AppCompatActivity() {
                 i?.carName + " "
             }
         }
-        carListView.text = selectedCarsString.ifEmpty { "nothing" }
+        carListView.text = selectedCarsString.ifEmpty { resources.getString(R.string.nothing) }
 
         selectedCarsString = ""
     }

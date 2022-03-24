@@ -1,8 +1,9 @@
 package model
 
 /**
- * Class which handles all exceptions connected with calculating.
+ * Custom exception class.
  *
  * @author Marek Kawalski
+ * @version 1.1
  */
 class FuelCostCalculatorException(message: String?) : Exception(message)

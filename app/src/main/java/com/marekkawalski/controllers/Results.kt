@@ -1,4 +1,4 @@
-package com.marekkawalski.viewControllers
+package com.marekkawalski.controllers
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.marekkawalski.fuelcostcalculator.R
 import model.FuelCostCalculator
 import model.Person
-import otherControllers.SettingsController
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -21,6 +20,7 @@ import kotlin.math.roundToInt
  * Results
  * Class is responsible for displaying who passengers should pay and how much
  * @author Marek Kawalski
+ * @version 1.5
  */
 class Results : AppCompatActivity() {
 
@@ -36,7 +36,7 @@ class Results : AppCompatActivity() {
         title = getString(R.string.app_full_name)
 
         val settings = SettingsController()
-        settings.loadSettings(this, resources)
+        settings.loadSettings(this)
 
         listOfPassengers = intent.getParcelableArrayListExtra("listOfPassengers")
         tableOfPassengers = findViewById(R.id.tableOfCostsLayout)

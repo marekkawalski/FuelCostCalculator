@@ -42,6 +42,7 @@
     <string name="add_distance">+ ADD DISTANCE</string>
     <string name="delete_last_distance">- DELETE LAST</string>
     <string name="carList">Cars</string>
+    <string name="nothing">nothing</string>
 
     <!--Toast messages and communication with user on add distances activity-->
     <string name="provide_distance_name">Provide distance name!</string>

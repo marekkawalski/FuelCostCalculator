@@ -1,16 +1,19 @@
-package com.marekkawalski.viewControllers
+package com.marekkawalski.controllers
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import com.marekkawalski.fuelcostcalculator.R
-import java.util.*
 
+/**
+ * Settings activity
+ * @author Marek Kawalski
+ * @version 1.5
+ */
 class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
     var context: Context? = null
 
@@ -52,22 +55,6 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
                 }
             }
-        } else if (key == "appLanguage") {
-
-            when (sharedPreference?.getString(key, "default")) {
-                "default" -> {
-
-                    setLocale("en", resources)
-                }
-                "en" -> {
-
-                    setLocale("en", resources)
-                }
-                "pl" -> {
-
-                    setLocale("pl", resources)
-                }
-            }
 
             val intent = Intent(this, MainActivity::class.java)
             // set the new task and clear flags
@@ -80,13 +67,5 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
         super.onDestroy()
         PreferenceManager.getDefaultSharedPreferences(this)
             .unregisterOnSharedPreferenceChangeListener(this)
-    }
-
-    private fun setLocale(languageName: String, res: Resources) {
-        Locale(languageName)
-        val dm = res.displayMetrics
-        val conf = res.configuration
-        conf.setLocale(Locale(languageName))
-        res.updateConfiguration(conf, dm)
     }
 }

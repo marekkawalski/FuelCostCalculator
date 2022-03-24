@@ -4,10 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 
 /**
- * Distance
  * Class represents particular distance covered during a trip (for instance a distance to London from Paris)
- * @constructor Create empty Distance
  * @author Marek Kawalski
+ * @version 1.3
  */
 class Distance : Parcelable {
     /**
@@ -35,10 +34,23 @@ class Distance : Parcelable {
      */
     var id: Int
 
-
     constructor(distanceName: String, distance: Double, id: Int) {
         this.distanceName = distanceName
         this.distance = distance
+        this.id = id
+    }
+
+    constructor(
+        distanceName: String,
+        distance: Double,
+        passengersCount: Int,
+        listOfCars: ArrayList<Car?>,
+        id: Int
+    ) {
+        this.distanceName = distanceName
+        this.distance = distance
+        this.passengersCount = passengersCount
+        this.listOfCars = listOfCars
         this.id = id
     }
 

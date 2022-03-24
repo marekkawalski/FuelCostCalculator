@@ -5,7 +5,7 @@
     android:id="@+id/constraintlayoutPassengers"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.marekkawalski.viewControllers.AddPayers">
+    tools:context="com.marekkawalski.controllers.AddPayers">
 
     <TextView
         android:id="@+id/passengersTextView"
