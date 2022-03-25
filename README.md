@@ -50,7 +50,7 @@ Let's say that you drove three distances:
  In this situation, each passenger covered diffrent distance so they should pay accordingly to how many kilometers/miles they covered, 
  shouldn't they?
  At this moment, situation starts to get tricky because you have absolutely no idea how much your passengers should pay for fuel.
- Fortunately, this is where <strong>Fuel cost calculator</strong> comes at rescue. It can accurately calculate how much each passenger owes
+ Fortunately, this is where <strong>Fuel cost calculator</strong> comes at rescue. It can accurately calculate how much each passenger owes.
 </p>
  <h2 id="features">Features</h2>
  <p>
@@ -66,7 +66,16 @@ Let's say that you drove three distances:
   </ul>
   </p>
   <h2 id="images">Images</h2>
-   <img src="https://user-images.githubusercontent.com/56251920/154491508-82548965-7dae-4248-83c1-39bd550f61b7.png"></img>
+  <p>
+  <img src="https://user-images.githubusercontent.com/56251920/160158584-4fb6f39c-f91e-4730-a175-d475a39feda4.png" height=400px></img>
+  <img src="https://user-images.githubusercontent.com/56251920/160158865-0bd205cb-cc0c-4311-9e8d-270f78fb8f37.png" height=400px></img>
+  <img src="https://user-images.githubusercontent.com/56251920/160158929-58667efd-d21c-4da0-8be0-ed6a1f624359.png" height=400px></img>
+  <img src="https://user-images.githubusercontent.com/56251920/160158982-9ad95cec-e4a3-4390-9ca6-dc62dc890019.png" height=400px></img>
+  <img src="https://user-images.githubusercontent.com/56251920/160159049-2b1ae342-f6a0-4b01-b4ad-8902ed8832c7.png" height=400px></img>
+  </p>
+ 
+ 
+ 
   <h2 id="howToUse">How to use</h2>
    <ol>
   <li>Add cars that were used during your trips.</li>
