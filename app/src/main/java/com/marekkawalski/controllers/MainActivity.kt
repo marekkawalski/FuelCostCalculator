@@ -14,23 +14,66 @@ import com.marekkawalski.fuelcostcalculator.R
 import model.Car
 
 /**
- * Main activity
  * Class is apps main activity. On this screen, user can add cars that took part in a trip.
  * @author Marek Kawalski
  * @version 1.4
  */
 class MainActivity : AppCompatActivity() {
+    /**
+     *@property carMake car make
+     */
     private var carMake: String? = null
+
+    /**
+     * @property totalCost total cost of fuel
+     */
     private var totalCost: Double? = null
+
+    /**
+     * @property car instance of Car class
+     */
     private var car: Car? = null
+
+    /**
+     * @property dontKnowCheckBox checkbox which indicates of user knows fuel cost or not
+     */
     private var dontKnowCheckBox: CheckBox? = null
+
+    /**
+     * @property listOfCars list of cars that user added
+     */
     private var listOfCars = ArrayList<Car>()
+
+    /**
+     * @property listOfCarsViews list of table rows for each car
+     */
     private var listOfCarsViews = ArrayList<TableRow>()
+
+    /**
+     * @property tableCars table to which car is added
+     */
     private var tableCars: TableLayout? = null
+
+    /**
+     * @property carNameInput input where user provides car name
+     */
     private var carNameInput: TextInputEditText? = null
+
+    /**
+     * @property totalCostInput input where user provides total cost of fuel
+     */
     private var totalCostInput: TextInputEditText? = null
+
+    /**
+     * @property bottomNavigationView view with bottom navigation bar
+     */
     private var bottomNavigationView: BottomNavigationView? = null
 
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

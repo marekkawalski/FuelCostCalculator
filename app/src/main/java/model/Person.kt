@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 /**
- * Class represents a passenger who took part in a trip
+ * Class represents a passenger who took part in a trip.
  * @author Marek Kawalski
  * @version 1.3
  */

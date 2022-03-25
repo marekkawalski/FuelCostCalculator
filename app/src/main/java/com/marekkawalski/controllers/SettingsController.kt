@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 
 /**
- * Settings controller
  * Class which is responsible for managing settings
  * @constructor Create empty Settings controller
  */

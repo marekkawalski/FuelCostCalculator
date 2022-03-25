@@ -17,24 +17,84 @@ import model.Distance
 /**
  * This class allows user to add new distances and select what cars were used on them.
  * @author Marek Kawalski
- * @version 1.5
+ * @version 1.6
  */
 class AddDistances : AppCompatActivity() {
+    /**
+     *@property distanceName distance name
+     */
     private var distanceName: String? = null
+
+    /**
+     *@property distance distance length in km, miles or any other unit
+     */
     private var distance: Double? = null
+
+    /**
+     *@property listOfDistances list of distances that took place during an excursion
+     */
     private var listOfDistances = ArrayList<Distance>()
+
+    /**
+     *@property listOfDistancesViews  list of table rows containing distances names, length and cars that were present on them
+     */
     private var listOfDistancesViews = ArrayList<TableRow>()
+
+    /**
+     * @property choiceList list from which passenger can choose distances
+     */
     private var choiceList = ArrayList<String>()
+
+    /**
+     * @property selectedChoiceList list connected with choiceList, it contains true if distance was chosen or false if not
+     */
     private var selectedChoiceList = ArrayList<Boolean>()
+
+    /**
+     * @property listOfCarsSelectedChoice list of arrays containing information in which distances car took part
+     */
     private var listOfCarsSelectedChoice = ArrayList<BooleanArray>()
+
+    /**
+     * @property distanceIndex index of distance
+     */
     private var distanceIndex = -1
+
+    /**
+     * @property tableOfDistances table to which distances are added
+     */
     private var tableOfDistances: TableLayout? = null
+
+    /**
+     * @property distanceNameInput input where user provides distance name, distance identifier or basically any string
+     */
     private var distanceNameInput: TextInputEditText? = null
+
+    /**
+     * @property distanceInput input where user provides distance length. It can't be less equal to zero.
+     */
     private var distanceInput: TextInputEditText? = null
+
+    /**
+     * @property carList list of all cars
+     */
     private var carList: ArrayList<Car>? = null
+
+    /**
+     * @property selectedCarsString string containing all distances names (used for UI)
+     */
     private var selectedCarsString = ""
+
+    /**
+     * @property choiceArray array from which passenger can choose distances
+     */
     private var choiceArray: Array<String>? = null
 
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_distances)
@@ -98,7 +158,7 @@ class AddDistances : AppCompatActivity() {
     }
 
     /**
-     * Method handles adding new distances
+     * Method handles adding new distances.
      *
      */
     private fun handleAddingDistances() {
@@ -184,7 +244,7 @@ class AddDistances : AppCompatActivity() {
     }
 
     /**
-     * Delete last distance handler
+     * Method handles deleting last distance.
      *
      */
     private fun deleteLastDistanceHandler() {
@@ -210,7 +270,13 @@ class AddDistances : AppCompatActivity() {
         }
     }
 
-
+    /**
+     * Method is responsible for displaying alert dialogs on screen. In these alert dialogs, user can add what cars took part in
+     * various distances.
+     *
+     * @param carListView button on which cars that took part in certain distance are shown
+     * @param distanceInstance particular distance
+     */
     private fun handleAlertDialogs(carListView: Button, distanceInstance: Distance?) {
         val alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle(
@@ -249,7 +315,8 @@ class AddDistances : AppCompatActivity() {
     /**
      * Save what cars were used on particular distances.
      *
-     * @param carListView
+     * @param carListView button on which cars that took part in certain distance are shown
+     * @param distanceInstance current distance
      */
     private fun whatCarsWereUsedOnADistance(carListView: Button, distanceInstance: Distance?) {
         for (i in distanceInstance?.listOfCars ?: return) {
@@ -264,6 +331,10 @@ class AddDistances : AppCompatActivity() {
         selectedCarsString = ""
     }
 
+    /**
+     * Method to handle moving to next activity.
+     *
+     */
     private fun moveToNextActivityHandler() {
         if (listOfDistancesViews.isEmpty() || listOfDistances.isEmpty()) {
             Toast.makeText(

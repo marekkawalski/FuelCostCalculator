@@ -14,7 +14,7 @@ import kotlin.math.roundToInt
 /**
  * Class where tests on model are performed.
  * @author Marek Kawalski
- * @version 1.2
+ * @version 1.3
  */
 class FuelCostCalculatorTest {
     /**
@@ -179,6 +179,47 @@ class FuelCostCalculatorTest {
 
         }
     }
+
+    /**
+     * Method tests evaluation of who should be paying who and how much.
+     *
+     * @param arrayOfHowMuchPeopleToBePaidPaid array of how much people to be paid are to be repaid
+     * @param arrayOfHowMuchPayersPaid array of how much money passengers owe
+     * @param listOfPayers list of of people who owe money
+     * @param listOfPeopleToBePaid list of people to be paid
+     * @param expectedOutput expected output, list containing maps of payments
+     */
+    @ParameterizedTest
+    @MethodSource("data provider for testing who passengers should pay")
+    fun `test who passengers should pay for their trips`(
+        arrayOfHowMuchPeopleToBePaidPaid: Array<Double>,
+        arrayOfHowMuchPayersPaid: Array<Double>,
+        listOfPayers: ArrayList<Person>,
+        listOfPeopleToBePaid: ArrayList<Person>,
+        expectedOutput: ArrayList<MutableMap<Person, Double>>
+    ) {
+
+        for ((i, person) in listOfPeopleToBePaid.withIndex()) {
+            person.howMuchPaid = arrayOfHowMuchPeopleToBePaidPaid[i]
+            person.mapOfPayments.clear()
+        }
+        for ((i, person) in listOfPayers.withIndex()) {
+            person.howMuchPaid = arrayOfHowMuchPayersPaid[i]
+            person.mapOfPayments.clear()
+        }
+
+        fuelCostCalculator.whoPassengerShouldPay(listOfPayers, listOfPeopleToBePaid)
+
+
+        for ((i, payer) in listOfPayers.withIndex()) {
+            assertEquals(
+                expectedOutput[i],
+                payer.mapOfPayments,
+                "${payer.name} payment is incorrect!"
+            )
+        }
+    }
+
 
     /**
      * Data provider companion object for FuelCostCalculatorTest
@@ -347,6 +388,95 @@ class FuelCostCalculatorTest {
                                             * distanceToVienna.passengersCount)
                                     )
                             )
+                )
+            )
+        }
+
+        /**
+         * Method provides data for testing who passengers should pay.
+         *
+         * @return stream of arguments:
+         *  arrayOfHowMuchPeopleToBePaidPaid array of how much people to be paid are to be repaid,
+         *  arrayOfHowMuchPayersPaid array of how much money passengers owe,
+         *  listOfPayers list of of people who owe money,
+         *  listOfPeopleToBePaid list of people to be paid,
+         *  expectedOutput expected output, list containing maps of payments
+         */
+        @JvmStatic
+        fun `data provider for testing who passengers should pay`(): Stream<Arguments> {
+            val marek = Person("Marek", 0)
+            val pawel = Person("Pawel", 1)
+            val patryk = Person("Patryk", 2)
+            val paulina = Person("Paulina", 3)
+            val agata = Person("Agata", 4)
+            val beata = Person("Beata", 5)
+            val dominika = Person("Dominika", 6)
+            val julia = Person("Julia", 7)
+            val marta = Person("Marta", 8)
+            val sara = Person("Sara", 9)
+
+            return Stream.of(
+                arguments(
+                    arrayOf(300.00, 200.00),
+                    arrayOf(-125.00, -125.00, -125.00, -125.00),
+                    arrayListOf(paulina, agata, beata, pawel),
+                    arrayListOf(marek, patryk),
+                    arrayListOf(
+                        mutableMapOf((marek to 125.0)),
+                        mutableMapOf(marek to 125.0),
+                        mutableMapOf((marek to 50.0), (patryk to 75.0)),
+                        mutableMapOf((patryk to 125.0))
+                    )
+                ),
+                arguments(
+                    arrayOf(900.0),
+                    arrayOf(
+                        -100.00,
+                        -100.00,
+                        -100.00,
+                        -100.00,
+                        -100.00,
+                        -100.00,
+                        -100.00,
+                        -100.00,
+                        -100.00
+                    ),
+                    arrayListOf(paulina, agata, beata, pawel, patryk, dominika, julia, marta, sara),
+                    arrayListOf(marek),
+                    arrayListOf(
+                        mutableMapOf((marek to 100.0)),
+                        mutableMapOf((marek to 100.0)),
+                        mutableMapOf((marek to 100.0)),
+                        mutableMapOf((marek to 100.0)),
+                        mutableMapOf((marek to 100.0)),
+                        mutableMapOf((marek to 100.0)),
+                        mutableMapOf(marek to 100.0),
+                        mutableMapOf((marek to 100.0)),
+                        mutableMapOf((marek to 100.0))
+                    )
+                ),
+                arguments(
+                    arrayOf(300.0, 250.0, 125.0),
+                    arrayOf(
+                        -220.00,
+                        -140.00,
+                        -124.00,
+                        -90.00,
+                        -60.00,
+                        -26.00,
+                        -15.00,
+                    ),
+                    arrayListOf(paulina, agata, beata, dominika, julia, marta, sara),
+                    arrayListOf(marek, pawel, patryk),
+                    arrayListOf(
+                        mutableMapOf((marek to 220.0)),
+                        mutableMapOf((marek to 80.0), (pawel to 60.0)),
+                        mutableMapOf((pawel to 124.0)),
+                        mutableMapOf((pawel to 66.0), (patryk to 24.0)),
+                        mutableMapOf((patryk to 60.0)),
+                        mutableMapOf(patryk to 26.0),
+                        mutableMapOf((patryk to 15.0))
+                    )
                 )
             )
         }

@@ -1,6 +1,5 @@
 package com.marekkawalski.controllers
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -15,8 +14,12 @@ import com.marekkawalski.fuelcostcalculator.R
  * @version 1.5
  */
 class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
-    var context: Context? = null
 
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -33,6 +36,12 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
 
     }
 
+    /**
+     * On shared preference changed
+     *
+     * @param sharedPreference
+     * @param key
+     */
     override fun onSharedPreferenceChanged(
         sharedPreference: SharedPreferences?,
         key: String?
@@ -63,6 +72,10 @@ class SettingsActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferen
         }
     }
 
+    /**
+     * On destroy
+     *
+     */
     override fun onDestroy() {
         super.onDestroy()
         PreferenceManager.getDefaultSharedPreferences(this)

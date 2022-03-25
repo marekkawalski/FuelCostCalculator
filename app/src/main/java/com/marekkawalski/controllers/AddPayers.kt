@@ -20,22 +20,70 @@ import model.Person
 /**
  * This class allows user to add payments for fuel made during a trip.
  * @author Marek Kawalski
- * @version 1.3
+ * @version 1.4
  *
  */
 class AddPayers : AppCompatActivity() {
+    /**
+     * @property payment amount of money paid by a passenger for fuel
+     */
     private var payment: Double? = null
+
+    /**
+     * @property listOfPayersViews list of table rows with payer information
+     */
     private var listOfPayersViews = ArrayList<TableRow>()
+
+    /**
+     * @property currentSum
+     */
     private var currentSum = 0.0
+
+    /**
+     * @property listOfPassengers list of all passengers
+     */
     private var listOfPassengers: ArrayList<Person>? = null
+
+    /**
+     * @property listOfCars list of all cars
+     */
     private var listOfCars: ArrayList<Car>? = null
+
+    /**
+     * @property payerPriceInput input text where payer inputs how much money they paid
+     */
     private var payerPriceInput: TextInputEditText? = null
+
+    /**
+     * @property payerPriceInputLayout layout of payerPriceInput
+     */
     private var payerPriceInputLayout: TextInputLayout? = null
+
+    /**
+     * @property tableOfPayers table of payers
+     */
     private var tableOfPayers: TableLayout? = null
+
+    /**
+     * @property paymentTextView text view where information about payment is displayed
+     */
     private var paymentTextView: TextView? = null
+
+    /**
+     * @property payerId id of payer
+     */
     private var payerId = 0
+
+    /**
+     * @property carId id of car
+     */
     private var carId = 0
 
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -156,7 +204,7 @@ class AddPayers : AppCompatActivity() {
     }
 
     /**
-     * Handle adding payment
+     * Method handles adding new payment.
      *
      */
     private fun handleAddingPayment() {
@@ -194,7 +242,7 @@ class AddPayers : AppCompatActivity() {
     }
 
     /**
-     * Add payment to ui
+     * Method adds payment to UI.
      *
      */
     @SuppressLint("SetTextI18n")
@@ -220,7 +268,7 @@ class AddPayers : AppCompatActivity() {
     }
 
     /**
-     * Handle deleting last payment
+     * Method handles deleting last payment from the payment list.
      *
      */
     @SuppressLint("SetTextI18n")
@@ -254,7 +302,7 @@ class AddPayers : AppCompatActivity() {
     }
 
     /**
-     * Handle moving to next activity
+     * Method handles moving to next activity.
      *
      */
     private fun handleMovingToNextActivity() {
@@ -295,6 +343,12 @@ class AddPayers : AppCompatActivity() {
         }
     }
 
+    /**
+     * Method creates array adapters, spinners
+     *
+     * @param spinner spinner
+     * @param listOfChoice list from which user can choose payments
+     */
     private fun createAnArrayAdapter(spinner: Spinner?, listOfChoice: ArrayList<String>) {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter(

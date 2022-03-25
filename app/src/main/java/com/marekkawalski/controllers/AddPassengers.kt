@@ -16,25 +16,79 @@ import model.*
 /**
  * Add passengers
  * @author Marek Kawalski
- * @version 1.6
+ * @version 1.7
  */
 class AddPassengers : AppCompatActivity() {
-
+    /**
+     * @property passengerName name of passenger
+     */
     private var passengerName: String? = null
+
+    /**
+     * @property listOfPassengers list of passengers
+     */
     private var listOfPassengers = ArrayList<Person>()
+
+    /**
+     * @property choiceList list of distances to choose from for each passenger
+     */
     private var choiceList = ArrayList<String>()
+
+    /**
+     * @property selectedChoiceList list of arrays which indicate who was present on what distances
+     */
     private var selectedChoiceList = ArrayList<Boolean>()
+
+    /**
+     * @property listOfPassengersSelectedChoice list of arrays which indicates at what distances passengers were present
+     */
     private var listOfPassengersSelectedChoice = ArrayList<BooleanArray>()
+
+    /**
+     * @property listOfPassengersViews list of table rows
+     */
     private var listOfPassengersViews = ArrayList<TableRow>()
+
+    /**
+     * @property listOfPassengersIndex passenger id
+     */
     private var listOfPassengersIndex = -1
+
+    /**
+     * @property tableOfPassengers table which is used to display passengers and their selected choices
+     */
     private var tableOfPassengers: TableLayout? = null
+
+    /**
+     *@property passengerNameInput input where passenger provides their name
+     */
     private var passengerNameInput: TextInputEditText? = null
+
+    /**
+     * @property selectedDistancesString string containing all distances selected by a passenger
+     */
     private var selectedDistancesString = ""
+
+    /**
+     * @property distancesList list of all distances
+     */
     private var distancesList: ArrayList<Distance?>? = null
+
+    /**
+     * @property listOfCars list of all cars
+     */
     private var listOfCars: ArrayList<Car?>? = null
+
+    /**
+     * @property choiceArray array of choices
+     */
     private var choiceArray: Array<String>? = null
 
-
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -105,7 +159,7 @@ class AddPassengers : AppCompatActivity() {
     }
 
     /**
-     * Add passengers handler
+     * Method handles adding passengers.
      *
      */
     private fun addPassengersHandler() {
@@ -172,10 +226,10 @@ class AddPassengers : AppCompatActivity() {
     }
 
     /**
-     * Store distances names
+     * Method stores distances names.
      *
-     * @param person
-     * @param distancesTextView
+     * @param person person whose distances is to be stored
+     * @param distancesTextView where to display the distances
      */
     private fun storeDistancesNames(person: Person, distancesTextView: TextView) {
         for (i in person.listOfPassengersSelectedDistances) {
@@ -191,10 +245,10 @@ class AddPassengers : AppCompatActivity() {
     }
 
     /**
-     * Handle distances alert dialogs
+     * Method displays alert dialogs in which user can select distances covered by each passenger.
      *
-     * @param person
-     * @param distancesTextView
+     * @param person person to select distances for
+     * @param distancesTextView where to display the distances
      */
     private fun handleDistancesAlertDialogs(
         person: Person,
@@ -242,7 +296,7 @@ class AddPassengers : AppCompatActivity() {
     }
 
     /**
-     * Delete last passenger handler
+     * Method handles deleting last passenger.
      *
      */
     private fun deleteLastPassengerHandler() {
@@ -280,7 +334,7 @@ class AddPassengers : AppCompatActivity() {
     }
 
     /**
-     * Moving to next screen handler
+     * Method handles moving to next activity.
      *
      */
     private fun movingToNextScreenHandler() {

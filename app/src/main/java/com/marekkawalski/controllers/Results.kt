@@ -17,18 +17,37 @@ import java.util.*
 import kotlin.math.roundToInt
 
 /**
- * Results
  * Class is responsible for displaying who passengers should pay and how much
  * @author Marek Kawalski
- * @version 1.5
+ * @version 1.6
  */
 class Results : AppCompatActivity() {
 
+    /**
+     *@property listOfPayers list of people who are to pay
+     */
     private var listOfPayers = ArrayList<Person>()
+
+    /**
+     *@property listOfPeopleToBePaid  list of people who are to be repaid
+     */
     private var listOfPeopleToBePaid = ArrayList<Person>()
+
+    /**
+     * @property tableOfPassengers table where passengers and their payments are displayed
+     */
     private var tableOfPassengers: TableLayout? = null
+
+    /**
+     * @property listOfPassengers list of all passengers
+     */
     private var listOfPassengers: ArrayList<Person>? = null
 
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
