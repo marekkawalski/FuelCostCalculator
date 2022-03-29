@@ -24,6 +24,9 @@
   <li>
     <a href="#status">Project status</a>
   </li>
+   <li>
+    <a href="#playStore">Google Play Store</a>
+  </li>
   </ul>
   <h2 id="generalInfo">General info</h2>
   <p>Have you ever found yourself in a situation where you go on holidays with your friends, you are their driver and all passengers cover diffrent distances?
@@ -102,4 +105,10 @@ Let's say that you drove three distances:
   </ul>
     <h2 id="status">Project status</h2> 
     <p>Finished</p>
+     <h2 id="playStore">Google Play store</h2> 
+       <p> <a
+                href="https://play.google.com/store/apps/details?id=com.marekkawalski.fuelcostcalculator"
+                target="_blank"
+                rel="noopener noreferrer"
+              >download app</a></p>
   
